@@ -5,6 +5,9 @@ body {
   color: #222;
 }
 
+
+/* HEADER */
+
 header {
   padding: 60px 10%;
   background-color: white;
@@ -15,30 +18,49 @@ header h1 {
   margin-bottom: 10px;
 }
 
-nav {
-  padding: 20px 10%;
+
+/* SIDEBAR + CONTENT */
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 180px;
+  padding: 40px 20px;
   background-color: white;
 }
 
-nav a {
-  margin-right: 25px;
-  text-decoration: none;
-  color: #222;
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+
+  border: none;
+  background: none;
+
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-nav a:hover {
-  text-decoration: underline;
+.sidebar button:hover {
+  background-color: #eeeeee;
 }
 
-main {
-  width: 80%;
-  max-width: 900px;
-  margin: auto;
+
+/* RIGHT CONTENT */
+
+.content {
+  flex: 1;
+  padding: 40px;
 }
+
+
+/* EACH WEEK */
 
 .week {
-  background-color: white;
-  margin: 50px 0;
+  background-color: (255);
   padding: 40px;
 }
 
@@ -46,13 +68,18 @@ main {
   font-size: 32px;
 }
 
+
+/* IMAGES */
+
 .week img {
-  width: 100%;
-  max-width: 500px;
+  width: 300px;
   height: auto;
   display: block;
   margin: 20px auto;
 }
+
+
+/* TEXT */
 
 p {
   line-height: 1.7;
