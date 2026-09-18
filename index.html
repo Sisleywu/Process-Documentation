@@ -14,17 +14,48 @@
         <a href="#week1">Week1</a>
         </nav>
     </header>
-    
-    <main>
-        <section class="week" id="week1">
+
+    <div class="container">
+        <!-- LEFT SIDEBAR -->
+        <nav class="sidebar">
+            <button onclick="showWeek('week1')">Week 01</button>
+        </nav>
+
+        <!-- RIGHT CONTENT -->
+        <main class="content">
+            <section class="week" id="week1">
             <h2>Week1</h2>
             <img src="images/week1 reflection.JPG" alt="Week 1 process">
             <img src="images/blob.JPG" alt="Week 1 process">
             <p>
             This week we just started our class and did a drawing blob activity.
             </p>
-        </section>
-    </main>
+             </section>
+        </main>
+    </div>
+
+    <script>
+
+    function showWeek(weekId) {
+
+      // Find all sections with class="week"
+      const weeks = document.querySelectorAll('.week');
+
+      // Hide all weeks
+      weeks.forEach(function(week) {
+        week.style.display = 'none';
+      });
+
+      // Show the selected week
+      document.getElementById(weekId).style.display = 'block';
+
+    }
+
+    // Show Week 1 when the website first opens
+    showWeek('week1');
+    </script>
+    
 </body>
 </header>
 </html>
+
