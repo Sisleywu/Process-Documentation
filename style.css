@@ -48,8 +48,10 @@ main {
 
 .week img {
   width: 100%;
+  max-width: 500px;
   height: auto;
-  margin: 20px 0;
+  display: block;
+  margin: 20px auto;
 }
 
 p {
