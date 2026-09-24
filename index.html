@@ -1,68 +1,86 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sisley's Process Documentation</title> 
+
+    <title>Sisley's Process Documentation</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
-    <header>
-        <h1>Sisley's Process Documentation</h1>
 
-    </header>
+<div class="container">
+    
+//left sidebar
+        <aside class="sidebar">
+            <h1>Sisley's Process Documentation</h1>
 
-    <div class="container">
-        <!-- LEFT SIDEBAR -->
-        <nav class="sidebar">
-            <button onclick="showWeek('week1')">Week 01</button>
-        </nav>
-
-        <!-- RIGHT CONTENT -->
-        <main class="content">
-            <section class="week" id="week1">
-            <h2>Week1</h2>
-            <img src="images/week1 reflection.JPG" alt="Week 1 process">
-            <img src="images/blob.JPG" alt="Week 1 process">
-            <p>
-            This week we just started our class and did a drawing blob activity.
+            <p class="intro">
+                Weekly reflections, readings, experiments,
+                and projects from my creative coding course.
             </p>
 
-            <!-- READING RESPONSE -->
-            <h3>Reading Response</h3>
-            <p>
-            In the first reading, Baldwin discussed the idea of art being a kind of solitude. I think this is quite an interesting idea that I usually think art as a way of expression. For me, as an artist, I would use art to communicate with others, and I think it is an important way for me to make connection with the world. However, through this reading, I think it is also true that creation and idea itself is indeed solitude. Because the ideology itself is never replicable, when creating a piece of art, I actually enjoy the process of continues thinking, it feels like digging into a theory that had never been reached. I think what Baldwin mentioned about artist bringing the challenge up front is the actual truth about making art. When I was working with my portfolio, I always like to explore about some hidden phenomenon or fact about this world that had not been talked about. The process of reflection and contemplation is a kind of meditation to me, and it feels like I’m learning and seeing something I don’t normally see. 
-            </p>
-            <p>
-            In The Creative Process and The Creative Habit, this journey is been explained clearly. From this reading, I found the idea of creativity is not a rare ability especially interesting and I agreed with idea as it was explained further. For me, I draw from whatever I saw with my eyes, and when I was creating an artwork, I talked about what I observed from the surrounding. Mundane things turns out into big issues, a sentences, a piece of leaf or a thrown tissue were actually pieces of puzzle which creates the image called creativity. I’m always interested in biology, and as mentioned in both of latter two readings, I think it intriguing to say that idea have a natural rhythm. I think it is similar to forming a biological matter by cells that when small things gather, the conclusion will naturally came by as it makes a difference. Like I would feel the matter or I would observe the fact. This indeed could not be called a complete talent, but rather a habit of remembering trivial things around us, it is a way of thinking and a mindset of absorbing everything into your own ideology. 
-            </p>
-            </section>
-        </main>
+            <nav class="week-menu">
+
+
+//week 1
+    <div class="week-item">
+        <button class="week-button" onclick="toggleWeek('week1-menu')">Week 01</button>
+        <div class="week-links"id="week1-menu"><a href="week 1-reflection.html">01. Reflection</a>
+            <a href="week 1-project.html">02. Project</a>
+        </div>
     </div>
 
-    <script>
 
-    function showWeek(weekId) {
+//week 2
+     <div class="week-item">
+        <button class="week-button" onclick="toggleWeek('week2-menu')">Week 02</button>
+        <div class="week-links" id="week2-menu"><a href="week 2-reflection.html">01. Reflection</a>
+            <a href="week 2-project.html"></a>02. Project</a>
+        </div>
+    </div>
 
-      // Find all sections with class="week"
-      const weeks = document.querySelectorAll('.week');
+//Right side, Main Project
+ <main class="featured">
+    <h2>Latest Project</h2>
+    //Click to open
+    <a href="week 1-project.html"><img class="featured-image" src="images/blob.JPG" alt="Latest project"></a>
 
-      // Hide all weeks
-      weeks.forEach(function(week) {
-        week.style.display = 'none';
-      });
+    //project Info
+    <div class="project-info"><div class="project-title"><h2>Week 01</h2></div>
+    <div class="project-description">
+        <h3>Blob Drawing Activity</h3>
+            <p>
+                This week we started our class and experimented with a drawing blob activity.
+            </p>
+            <a class="view-project" href="week 1-project.html">View Project → </a>
+        </div>
+     </div>
+</main>
 
-      // Show the selected week
-      document.getElementById(weekId).style.display = 'block';
 
+</div>
+
+//Javascript
+ <script>
+
+function toggleWeek(menuId) {
+    const menu = document.getElementById(menuId);
+    if (menu.style.display === "block") {
+        menu.style.display = "none";
+    } else { 
+        menu.style.display = "block";
     }
+}
 
-    // Show Week 1 when the website first opens
-    showWeek('week1');
-    </script>
+</script>
 
 </body>
-</header>
-</html>
 
+</html>

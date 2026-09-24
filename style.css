@@ -1,86 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  background-color: white;
-  color: #222;
+  font-family: Arial, sans-serif;
+  color: #000000;
+  background: white;
 }
 
 
-/* HEADER */
+/* WHOLE PAGE */
 
-header {
-  padding: 60px 10%;
-  background-color: white;
+.layout {
+  display: grid;
+
+  grid-template-columns: 32% 68%;
+
+  min-height: 100vh;
 }
 
-header h1 {
-  font-size: 42px;
+
+/* LEFT SIDEBAR */
+
+.sidebar {
+  padding: 30px;
+}
+
+.sidebar h1 {
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.intro {
+  max-width: 350px;
+
+  margin-top: 30px;
+  margin-bottom: 40px;
+
+  color: #888;
+  line-height: 1.4;
+}
+
+
+/* WEEK NAVIGATION */
+
+.weeks h3 {
+  font-size: 16px;
+
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+
+.weeks a {
+  display: block;
+
+  margin-left: 15px;
+  margin-bottom: 6px;
+
+  color: #888;
+
+  text-decoration: none;
+}
+
+.weeks a:hover {
+  color: black;
+}
+
+
+/* RIGHT SIDE */
+
+.featured {
+  padding: 30px;
+}
+
+.featured > h2 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+
+/* BIG FEATURED IMAGE */
+
+.featured-image {
+  width: 100%;
+  height: auto;
+
+  margin-top: 20px;
+
+  display: block;
+}
+
+
+/* INFORMATION UNDER IMAGE */
+
+.project-info {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 40px;
+
+  margin-top: 25px;
+}
+
+.project-info h2 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.description {
+  max-width: 450px;
+}
+
+.description h3 {
+  font-size: 16px;
+
+  margin-top: 0;
   margin-bottom: 10px;
 }
 
+.description p {
+  color: #888;
 
-/* SIDEBAR + CONTENT */
-
-.container {
-  display: flex;
-}
-
-.sidebar {
-  width: 180px;
-  padding: 40px 20px;
-  background-color: white;
-}
-
-.sidebar button {
-  display: block;
-  width: 100%;
-  padding: 15px;
-
-  border: none;
-  background: none;
-
-  text-align: left;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.sidebar button:hover {
-  background-color: #eeeeee;
+  line-height: 1.5;
 }
 
 
-/* RIGHT CONTENT */
+/* VIEW PROJECT */
 
-.content {
-  flex: 1;
-  padding: 40px;
+.view-project {
+  display: inline-block;
+
+  margin-top: 15px;
+
+  color: #222;
+
+  text-decoration: none;
 }
 
-
-/* EACH WEEK */
-
-.week {
-  background-color: (255);
-  padding: 40px;
-}
-
-.week h2 {
-  font-size: 32px;
-}
-
-
-/* IMAGES */
-
-.week img {
-  width: 300px;
-  height: auto;
-  display: block;
-  margin: 20px auto;
-}
-
-
-/* TEXT */
-
-p {
-  line-height: 1.7;
+.view-project:hover {
+  text-decoration: underline;
 }
