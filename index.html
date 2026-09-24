@@ -4,70 +4,97 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Sisley's Process Documentation</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
-
-<div class="container">
-    
-//left sidebar
-        <aside class="sidebar">
-            <h1>Sisley's Process Documentation</h1>
-
-            <p class="intro">
-                Process Documentation and reflection 
-                for my ideation & prototyping course.
+    <div class="container">
+        
+    <!--left sidebar-->
+    <aside class="sidebar">
+    <h1>Sisley's Process Documentation</h1>
+        <p class="intro">
+            Process Documentation and reflection 
+            for my ideation & prototyping course.
             </p>
+    <nav class="week-menu">
+    <!--WEEK 1-->
+        <div class="week-item">
+            <button 
+                class="week-button" 
+                onclick="toggleWeek('week1-menu')">
+                Week 01
+            </button>
+            <div 
+                class="week-links"
+                id="week1-menu">
+                <a href="week 1-reflection.html">
+                    01. Reflection
+                </a>
+                <a href="week 1-project.html">
+                    02. Project
+                </a>
+            </div>
+        </div>
 
-            <nav class="week-menu">
-
-
-//week 1
-    <div class="week-item">
-        <button class="week-button" onclick="toggleWeek('week1-menu')">Week 01</button>
-        <div class="week-links"id="week1-menu"><a href="week 1-reflection.html">01. Reflection</a>
-            <a href="week 1-project.html">02. Project</a>
+    <!--WEEK 2-->
+        <div class="week-item">
+            <button 
+                class="week-button" 
+                onclick="toggleWeek('week2-menu')">
+                Week 02
+            </button>
+            <div 
+                class="week-links" 
+                id="week2-menu">
+                <a href="week 2-reflection.html">
+                    01. Reflection
+                </a>
+                <a href="week 2-project.html">
+                    02. Project
+                </a>
         </div>
     </div>
 
 
-//week 2
-     <div class="week-item">
-        <button class="week-button" onclick="toggleWeek('week2-menu')">Week 02</button>
-        <div class="week-links" id="week2-menu"><a href="week 2-reflection.html">01. Reflection</a>
-            <a href="week 2-project.html"></a>02. Project</a>
-        </div>
-    </div>
-
-//Right side, Main Project
- <main class="featured">
+<!--Right Side - Latest Project-->
+<main class="featured">
     <h2>Latest Project</h2>
-    //Click to open
-    <a href="week 1-project.html"><img class="featured-image" src="images/blob.JPG" alt="Latest project"></a>
 
-    //project Info
-    <div class="project-info"><div class="project-title"><h2>Week 01</h2></div>
-    <div class="project-description">
-        <h3>Blob Drawing Activity</h3>
+    <!--Click to open-->
+    <a href="week 1-project.html">
+        <img 
+        class="featured-image" 
+        src="images/blob.JPG" 
+        alt="Latest project">
+    </a>
+
+    <!--Project Ino-->
+    <div class="project-info">
+        <div class="project-title">
+            <h2>Week 01</h2>
+        </div>
+        <div class="project-description">
+            <h3>Blob Drawing Activity</h3>
             <p>
                 This week we started our class and experimented with a drawing blob activity.
             </p>
-            <a class="view-project" href="week 1-project.html">View Project → </a>
+            <a 
+                class="view-project" 
+                href="week 1-project.html">
+                View Project → 
+            </a>
         </div>
      </div>
 </main>
 
-
 </div>
 
-//Javascript
+
+<!--Javascript-->
  <script>
 
 function toggleWeek(menuId) {
