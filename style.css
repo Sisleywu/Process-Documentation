@@ -261,3 +261,19 @@ body {
     font-size: 40px;
     cursor: pointer;
 }
+
+.reflection {
+    max-width: 750px;
+    margin: 100px auto 80px auto;
+}
+
+.reflection h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+.reflection p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
