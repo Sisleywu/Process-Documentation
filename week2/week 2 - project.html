@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>50 Ways of Seeing</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="project-page">
+        <a class="back" href="index.html">
+            ← Back
+        </a>
+        <h1>50 Ways of Seeing</h1>
+        <p class="project-intro">
+            Week 02 — Ideation & Prototyping
+        </p>
+
+        <!-- IMAGE GALLERY -->
+        <div class="gallery">
+
+            <img src="images/week2/original.jpg"
+                 onclick="openImage(this, '01. Drawing of Fried Egg', 'This a drawing of fried egg.')">
+
+            <img src="images/week2/under.jpg"
+                 onclick="openImage(this, '02. Under', 'Looking from under the fried egg.')">
+
+            <img src="images/week2/inside.jpg"
+                 onclick="openImage(this, '03. Inside', 'Seeing from inside the fried egg.')">
+
+            <img src="images/week2/clay.jpg"
+                 onclick="openImage(this, '04. Clay Fried Egg', 'Making a fried egg with clay.')">
+
+            <img src="images/week2/not lifting.jpg"
+                 onclick="openImage(this, '05. Drawing without lifting')">
+
+        </div>
+
+    </main>
+
+
+    <!-- EXPANDED IMAGE -->
+
+    <div class="image-viewer" id="imageViewer">
+
+        <button class="close-button" onclick="closeImage()">
+            ×
+        </button>
+
+        <div class="viewer-content">
+
+            <img id="largeImage">
+
+            <h2 id="imageTitle"></h2>
+
+            <p id="imageReflection"></p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function openImage(image, title, reflection) {
+
+            document.getElementById("imageViewer").style.display = "flex";
+
+            document.getElementById("largeImage").src = image.src;
+
+            document.getElementById("imageTitle").innerText = title;
+
+            document.getElementById("imageReflection").innerText = reflection;
+
+        }
+
+
+        function closeImage() {
+
+            document.getElementById("imageViewer").style.display = "none";
+
+        }
+
+    </script>
+
+
+</body>
+</html>
