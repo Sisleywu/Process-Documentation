@@ -277,3 +277,57 @@ body {
     line-height: 1.7;
     margin-bottom: 25px;
 }
+
+/* ==================================
+   WEEK 03 - MATERIALS
+================================== */
+
+/* Five material images */
+
+.materials-five {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 70px;
+}
+
+.materials-five img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Material explanation */
+
+.material-explanation {
+    width: 60%;
+    max-width: 750px;
+    margin-bottom: 70px;
+}
+
+.material-explanation h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.material-explanation p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+
+/* Image after explanation */
+
+.material-large-image {
+    width: 100%;
+}
+
+.material-large-image img {
+    width: 100%;
+    max-height: 650px;
+    object-fit: cover;
+    display: block;
+}
