@@ -279,60 +279,6 @@ body {
 }
 
 /* ==================================
-   WEEK 03 - MATERIALS
-================================== */
-
-/* Five material images */
-
-.materials-five {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 70px;
-}
-
-.materials-five img {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    display: block;
-}
-
-
-/* Material explanation */
-
-.material-explanation {
-    width: 60%;
-    max-width: 750px;
-    margin-bottom: 70px;
-}
-
-.material-explanation h3 {
-    font-size: 22px;
-    margin-bottom: 20px;
-}
-
-.material-explanation p {
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 25px;
-}
-
-
-/* Image after explanation */
-
-.material-large-image {
-    width: 100%;
-}
-
-.material-large-image img {
-    width: 100%;
-    max-height: 650px;
-    object-fit: cover;
-    display: block;
-}
-
-/* ==================================
    WEEK 03 - DOCUMENTATION PAGE
 ================================== */
 
@@ -385,23 +331,6 @@ body {
     margin-bottom: 60px;
 }
 
-
-/* ==================================
-   TEXT + IMAGE
-================================== */
-
-.text-image {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 70px;
-    align-items: center;
-    margin-bottom: 100px;
-}
-
-.doc-text {
-    max-width: 500px;
-}
-
 .doc-text h3 {
     font-size: 22px;
     margin-top: 0;
@@ -414,23 +343,6 @@ body {
     margin-bottom: 20px;
 }
 
-
-/* REVERSE TEXT / IMAGE */
-
-.text-image.reverse .doc-text {
-    order: 2;
-}
-
-.text-image.reverse > img {
-    order: 1;
-}
-
-.text-image > img {
-    width: 100%;
-    display: block;
-}
-
-
 /* ==================================
    TWO PANGOLIN IMAGES
 ================================== */
@@ -439,6 +351,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 40px;
 }
 
 .pangolin-images img {
@@ -529,50 +442,6 @@ body {
     line-height: 1.7;
 }
 
-
-/* ==================================
-   MOBILE
-================================== */
-
-@media (max-width: 750px) {
-
-    .documentation-page {
-        padding: 25px;
-    }
-
-    .doc-header h1 {
-        font-size: 36px;
-    }
-
-    .text-image {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .text-image.reverse .doc-text,
-    .text-image.reverse > img {
-        order: initial;
-    }
-
-    .materials-five {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .material-explanation {
-        width: 100%;
-    }
-
-    .process-row {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .final-description {
-        width: 100%;
-    }
-
-}
-
 .process-images {
     display: flex;
     flex-direction: column;
@@ -650,7 +519,7 @@ body {
 .endangerment-column {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 
 .endangerment-text {
@@ -669,12 +538,11 @@ body {
     margin-bottom: 25px;
 }
 
-
 /* CYCLE IMAGES */
 
 .cycle-image {
     width: 100%;
     height: auto;
     display: block;
-    margin: 10px 0 30px 0;
+    margin: 10px 0 40px 0;
 }
