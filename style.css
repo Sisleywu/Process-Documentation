@@ -600,3 +600,38 @@ body {
     object-fit: cover;
     display: block;
 }
+
+/* ==================================
+   FINAL SCULPTURE IMAGES
+================================== */
+
+.final-images {
+    width: 100%;
+}
+
+
+/* LARGE MAIN IMAGE */
+
+.final-main-image {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* TWO IMAGES UNDER MAIN IMAGE */
+
+.final-detail-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.final-detail-images img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
