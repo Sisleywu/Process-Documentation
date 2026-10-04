@@ -346,3 +346,257 @@ body {
     object-fit: cover;
     display: block;
 }
+
+/* ==================================
+   WEEK 03 - DOCUMENTATION PAGE
+================================== */
+
+
+/* WHOLE PAGE */
+
+.documentation-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 50px 100px;
+}
+
+
+/* HEADER */
+
+.doc-header {
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.project-label {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.doc-header h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+
+/* ==================================
+   SECTIONS
+================================== */
+
+.doc-section {
+    margin-top: 120px;
+}
+
+.section-number {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.doc-section > h2 {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 60px;
+}
+
+
+/* ==================================
+   TEXT + IMAGE
+================================== */
+
+.text-image {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 70px;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.doc-text {
+    max-width: 500px;
+}
+
+.doc-text h3 {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.doc-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+
+/* REVERSE TEXT / IMAGE */
+
+.text-image.reverse .doc-text {
+    order: 2;
+}
+
+.text-image.reverse > img {
+    order: 1;
+}
+
+.text-image > img {
+    width: 100%;
+    display: block;
+}
+
+
+/* ==================================
+   TWO PANGOLIN IMAGES
+================================== */
+
+.pangolin-images {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pangolin-images img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ==================================
+   FIVE MATERIAL IMAGES
+================================== */
+
+.materials-five {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 70px;
+}
+
+.materials-five img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ==================================
+   MATERIAL EXPLANATION
+================================== */
+
+.material-explanation {
+    width: 65%;
+    max-width: 750px;
+    margin-bottom: 70px;
+}
+
+.material-explanation h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.material-explanation p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+
+/* ==================================
+   MAKING PROCESS
+================================== */
+
+.process-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.process-row img {
+    width: 100%;
+    display: block;
+}
+
+.process-number {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+
+/* ==================================
+   FINAL SCULPTURE
+================================== */
+
+.final-description {
+    width: 65%;
+    max-width: 750px;
+    margin-top: 50px;
+}
+
+.final-description p {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* ==================================
+   MOBILE
+================================== */
+
+@media (max-width: 750px) {
+
+    .documentation-page {
+        padding: 25px;
+    }
+
+    .doc-header h1 {
+        font-size: 36px;
+    }
+
+    .text-image {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .text-image.reverse .doc-text,
+    .text-image.reverse > img {
+        order: initial;
+    }
+
+    .materials-five {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .material-explanation {
+        width: 100%;
+    }
+
+    .process-row {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .final-description {
+        width: 100%;
+    }
+
+}
+
+.process-images {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.process-images img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
