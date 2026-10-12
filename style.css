@@ -596,18 +596,9 @@ body {
 
 /* LOVE LETTER */
 
-.love-letter-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-}
-
-.love-letter-layout img {
+.love-letter-text {
     width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
+    max-width: 800px;
 }
 
 .love-letter-text p {
@@ -615,6 +606,16 @@ body {
     line-height: 1.8;
     margin-top: 0;
     margin-bottom: 25px;
+}
+
+/* Large image below the letter */
+
+.love-letter-layout img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    display: block;
 }
 
 
