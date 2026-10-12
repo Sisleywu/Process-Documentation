@@ -815,3 +815,10 @@ body {
     line-height: 1.8;
     margin-bottom: 25px;
 }
+
+/* TEXT HIGHLIGHT */
+
+.highlight {
+    color: #ff6b35;
+    font-weight: bold;
+}
