@@ -157,7 +157,7 @@
             <!-- CONCEPT 01 -->
 
             <div class="concept-item">
-                <img src="../week4/images/concept1.jpg" alt="Concept 1 Sketch">
+                <img src="../week4/images/concept1.jpg" alt="Concept 1 Sketch" class="concept-zoom" onclick="openConceptImage(this.src)">
                 <p class="concept-number">Concept 01</p>
                 <h3>
                     Environment - Sound Kitchen
@@ -173,7 +173,7 @@
             <!-- CONCEPT 02 -->
 
             <div class="concept-item">
-                <img src="../week4/images/concept2.jpg" alt="Concept 2 Sketch">
+                <img src="../week4/images/concept2.jpg" alt="Concept 2 Sketch" class="concept-zoom" onclick="openConceptImage(this.src)">
                 <p class="concept-number">Concept 02</p>
                 <h3>
                     Social - “Collaborative” Kitchen 
@@ -190,7 +190,7 @@
             <!-- CONCEPT 03 -->
 
             <div class="concept-item">
-                <img src="../week4/images/concept3.jpg" alt="Concept 3 Sketch">
+                <img src="../week4/images/concept3.jpg" alt="Concept 3 Sketch" class="concept-zoom" onclick="openConceptImage(this.src)">
                 <p class="concept-number">Concept 03</p>
                 <h3>
                     Material - Sensory Kitchen
@@ -229,8 +229,9 @@
         </h3>
         <div class="prototype-process">
             <div class="prototype-step">
-                <img
-                    src="../week4/images/different materials.JPG" alt="Material Experimentation">
+                <div class="prototype-step-images">
+                <img src="../week4/images/different materials.JPG" alt="Material Experimentation">
+                </div>
                 <p>
                     I found different types of materials for the sensory ktichen. 
                     Different types of fabrics, papers with different textures, bricks, fluffly balls, and strings. 
@@ -299,11 +300,15 @@
             Testing the prototype
         </h3>
         <div class="playful-testing-gallery">
-            <img class="playful-final-image" src="../week4/images/test1.JPG" alt="Final Playful Interface Prototype">
-            <img class="playful-final-image" src="../week4/images/test2.JPG" alt="Final Playful Interface Prototype">
-            <img class="playful-final-image" src="../week4/images/test3.JPG" alt="Final Playful Interface Prototype">
-            <img class="playful-final-image" src="../week4/images/test4.JPG" alt="Final Playful Interface Prototype">
-            <img class="playful-final-image" src="../week4/images/test5.JPG" alt="Final Playful Interface Prototype">
+            <div class="testing-portraits">
+                <img class="playful-final-image" src="../week4/images/test1.JPG" alt="Final Playful Interface Prototype">
+                <img class="playful-final-image" src="../week4/images/test2.JPG" alt="Final Playful Interface Prototype">
+                <img class="playful-final-image" src="../week4/images/test3.JPG" alt="Final Playful Interface Prototype">
+                <img class="playful-final-image" src="../week4/images/test4.JPG" alt="Final Playful Interface Prototype">
+            </div>
+            <div class="testing-landscape">
+                <img class="playful-final-image" src="../week4/images/test5.JPG" alt="Final Playful Interface Prototype">
+            </div>
         </div>
 
     </section>
@@ -360,6 +365,31 @@
 
 
 </main>
+
+<!-- CONCEPT IMAGE VIEWER -->
+
+<div id="concept-viewer" class="concept-viewer"
+     onclick="closeConceptImage()">
+
+    <button class="concept-close"
+            onclick="closeConceptImage()">
+        ×
+    </button>
+
+    <img id="concept-viewer-img" src="" alt="Enlarged concept">
+
+</div>
+
+<script>
+    function openConceptImage(src) {
+        document.getElementById("concept-viewer-img").src = src;
+        document.getElementById("concept-viewer").style.display = "flex";
+    }
+
+    function closeConceptImage() {
+        document.getElementById("concept-viewer").style.display = "none";
+    }
+</script>
 
 </body>
 </html>
