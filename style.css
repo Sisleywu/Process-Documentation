@@ -884,3 +884,394 @@ body {
     font-size: 40px;
     cursor: pointer;
 }
+
+
+/* ==========================================
+   WEEK 05 - GENAI AS CREATIVE MATERIAL
+========================================== */
+
+.genai-page {
+    max-width: 1500px;
+}
+
+/* HEADER */
+
+.genai-page .doc-header {
+    margin-bottom: 90px;
+}
+
+
+/* ==========================================
+   01 - SELECTED ARTWORK
+========================================== */
+
+.genai-artwork {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.genai-artwork img {
+    width: 100%;
+    max-height: 700px;
+    object-fit: contain;
+    display: block;
+}
+
+.genai-text h3 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.genai-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+
+/* ==========================================
+   02 - VISUAL ANALYSIS
+========================================== */
+
+.visual-analysis-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 30px;
+    align-items: start;
+    width: 100%;
+}
+
+.analysis-column {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.analysis-item {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.analysis-item h3 {
+    font-size: 19px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.analysis-item p {
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.analysis-artwork {
+    width: 100%;
+}
+
+.analysis-artwork img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.artwork-caption {
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   03 - PROMPTS
+========================================== */
+
+.genai-prompt {
+    max-width: 1000px;
+    background-color: #f5f5f5;
+    padding: 35px 40px;
+    margin: 60px 0;
+}
+
+.genai-prompt h3 {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.genai-prompt p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+    white-space: pre-line;
+}
+
+
+/* ==========================================
+   AI GENERATIONS
+========================================== */
+
+.genai-results {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+.genai-result {
+    min-width: 0;
+}
+
+.genai-result img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    display: block;
+    background-color: #f5f5f5;
+}
+
+.genai-result h3 {
+    font-size: 21px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.genai-result p {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   COLLAGE / SKETCH / PERFORMANCE
+========================================== */
+
+.genai-creation {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.genai-creation img {
+    width: 100%;
+    max-height: 700px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.genai-subheading {
+    font-size: 24px;
+    margin-top: 80px;
+    margin-bottom: 35px;
+}
+
+/* ==========================================
+   REFLECTION
+========================================== */
+
+.genai-reflection {
+    max-width: 850px;
+    margin-bottom: 100px;
+}
+
+.genai-reflection p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* ==========================================
+   IMAGE ZOOM
+========================================== */
+
+.genai-zoom {
+    cursor: zoom-in;
+    transition: opacity 0.2s;
+}
+
+.genai-zoom:hover {
+    opacity: 0.8;
+}
+
+.genai-viewer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.92);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    cursor: zoom-out;
+}
+
+.genai-viewer img {
+    max-width: 95%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    cursor: default;
+}
+
+.genai-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+/* ==========================================
+   HIGHLIGHT
+========================================== */
+
+.genai-page .highlight {
+    color: #000000;
+    font-weight: bold;
+}
+
+/* ==========================================
+   WEEK 05 - CLASS ACTIVITY
+========================================== */
+
+/* PAGE LAYOUT */
+
+.class-activity-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 50px 100px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.class-activity-page .doc-header {
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.class-activity-page .project-label {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.class-activity-page .doc-header h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+/* ==========================================
+   INTRODUCTION
+========================================== */
+
+.activity-introduction {
+    max-width: 750px;
+    margin-bottom: 100px;
+}
+
+.activity-introduction p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ==========================================
+   ACTIVITY SECTIONS
+========================================== */
+
+.activity-section {
+    margin-bottom: 120px;
+}
+
+.activity-section .section-number {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.activity-section h2 {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 35px;
+}
+
+/* ==========================================
+   DESCRIPTION & PROMPT
+========================================== */
+
+.activity-description {
+    max-width: 750px;
+    margin-bottom: 35px;
+}
+
+.activity-description h3 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.activity-description p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 0;
+    margin-bottom: 20px;
+    white-space: pre-line;
+}
+
+/* ==========================================
+   INITIAL AI GENERATION
+   & FINAL AI REGENERATION
+========================================== */
+
+.activity-image {
+    display: block;
+    width: 100%;
+    max-height: 750px;
+    height: auto;
+    object-fit: contain;
+    margin-top: 30px;
+}
+
+/* ==========================================
+   MY ARTWORK - TWO IMAGES SIDE BY SIDE
+========================================== */
+
+.activity-artwork-images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.activity-artwork-images img {
+    display: block;
+    width: 100%;
+    height: 450px;
+    object-fit: contain;
+}
+
+/* ==========================================
+   TEXT HIGHLIGHT
+========================================== */
+
+.class-activity-page .highlight {
+    color: #ff6b35;
+    font-weight: bold;
+}
+
