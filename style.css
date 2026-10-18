@@ -1307,4 +1307,27 @@ body {
     font-weight: bold;
 }
 
+/* ==========================================
+   WEEK 05 - dinosaur
+========================================== */
+
+.week5-image-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 50px 100px;
+}
+
+.week5-single-image {
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.week5-single-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
 
