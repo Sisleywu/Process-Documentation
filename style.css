@@ -1299,12 +1299,29 @@ body {
 }
 
 /* ==========================================
-   TEXT HIGHLIGHT
+   WEEK 05 - QUICK SKETCH
 ========================================== */
 
-.class-activity-page .highlight {
-    color: #ff6b35;
-    font-weight: bold;
+.genai-page .quick-sketch-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.genai-page .quick-sketch-content img {
+    display: block;
+    width: 100%;
+    max-height: 600px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.genai-page .quick-sketch-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-top: 25px;
 }
 
 /* ==========================================
