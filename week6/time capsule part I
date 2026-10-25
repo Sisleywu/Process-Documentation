@@ -51,8 +51,7 @@
                 <div class="capsule-image">
                     <img src="../week6/images/little sheep.png" alt="Little Sheep">
                 </div>
-
-                <p class="capsule-number">01 — Little Sheep</p>
+                <p class="capsule-number">0817</p>
                 <h3>Little Sheep</h3>
 
             </div>
@@ -64,12 +63,10 @@
                  onclick="openCapsule(1)">
 
                 <div class="capsule-image">
-                    <img src="images/object2.jpg"
-                         alt="Object 2">
+                    <img src="../week6/images/Instant Camera.png" alt="Instant Camera">
                 </div>
-
-                <p class="capsule-number">02 — TC</p>
-                <h3>Object Two</h3>
+                <p class="capsule-number">1211</p>
+                <h3>Instant Camera</h3>
 
             </div>
 
@@ -80,12 +77,11 @@
                  onclick="openCapsule(2)">
 
                 <div class="capsule-image">
-                    <img src="images/object3.jpg"
-                         alt="Object 3">
+                    <img src="../week6/images/Gamepad.png" alt="Game Controller">
                 </div>
 
-                <p class="capsule-number">03 — TC</p>
-                <h3>Object Three</h3>
+                <p class="capsule-number">1012</p>
+                <h3>Game Controller</h3>
 
             </div>
 
@@ -96,12 +92,11 @@
                  onclick="openCapsule(3)">
 
                 <div class="capsule-image">
-                    <img src="images/object4.jpg"
-                         alt="Object 4">
+                    <img src="../week6/images/Apron.png" alt="Object 4">
                 </div>
 
-                <p class="capsule-number">04 — TC</p>
-                <h3>Object Four</h3>
+                <p class="capsule-number">0128</p>
+                <h3>Cooking Apron</h3>
 
             </div>
 
@@ -112,12 +107,39 @@
                  onclick="openCapsule(4)">
 
                 <div class="capsule-image">
-                    <img src="images/object5.jpg"
-                         alt="Object 5">
+                    <img src="../week6/images/Button.png" alt="Button">
                 </div>
 
-                <p class="capsule-number">05 — TC</p>
-                <h3>Object Five</h3>
+                <p class="capsule-number">0910</p>
+                <h3>Button</h3>
+
+            </div>
+
+             <!-- OBJECT 06 -->
+
+            <div class="capsule-item"
+                 onclick="openCapsule(5)">
+
+                <div class="capsule-image">
+                    <img src="../week6/images/POP MART.png" alt="Button">
+                </div>
+
+                <p class="capsule-number">0228</p>
+                <h3>POP MART Toys</h3>
+
+            </div>
+
+              <!-- OBJECT 07 -->
+
+            <div class="capsule-item"
+                 onclick="openCapsule(6)">
+
+                <div class="capsule-image">
+                    <img src="../week6/images/Sketchbook.png" alt="Button">
+                </div>
+
+                <p class="capsule-number">0902</p>
+                <h3>Sketchbook</h3>
 
             </div>
 
@@ -189,51 +211,81 @@
 const capsuleObjects = [
 
     {
-        number: "01 — Little Sheep",
+        number: "0817",
         title: "Little Sheep",
-        image: "images/little sheep.jpg",
+        image: "images/little sheep.png",
         description: "This is little sheep, little sheep is a plushed toy. I love little sheep and little sheep is my family.",
         reason: "I received little sheep as a birth gift from my neighbour, so little had been with me since I was born untill now. Little sheep really meant a lot to me, it's my frist friend. The neighbour who give it to me was a olg man who works in traditional Chinese art. I think there is some sense of spirit inherited from him, that even though no in my family ever worked in the art field, yet I born with this interest in art.",
+        additionalImages: [
+            "images/childhood.JPG"
+        ]
+    },
+
+    {
+        number: "1211",
+        title: "Instant Camera",
+        image: "images/Instant Camera.png",
+        description: "This is a Fuji Wide 300 Instant Camera",
+        reason: "I like to take pictures, to record the moments I value, to remember the smiles, and to capture fulfillness. I had a photo album for my instant photos, I think physical are more expressive and unique.",
+        additionalImages: [
+            "images/album1.JPG",
+            "images/album2.JPG"
+        ]
+    },
+
+    {
+        number: "1012",
+        title: "Game Controller",
+        image: "images/Gamepad.png",
+        description: "This is a game constroller for switch and computer games. I used it to play some of my favorite games such as little nighmare and split fiction",
+        reason: "I always liked to play games. This object represents the time I spent playing games, and whenever I see it, I remember the happiness I had when playing games.",
 
         additionalImages: [
-        "images/little sheep detail1.jpg",
-        "images/little sheep detail2.jpg",
-        "images/little sheep detail3.jpg"
-    ]
+            "images/gametime.JPG"
+        ]
     },
 
     {
-        number: "02 — ",
-        title: "Object Two",
-        image: "images/object2.jpg",
-        description: "Write your introduction here.",
-        reason: "Explain why you chose this object."
+        number: "0128",
+        title: "Cooking Apron",
+        image: "images/Apron.png",
+        description: "This is a apron for cooking, I used it when I cook.",
+        reason: "I like to cook since I went to college. It's the first time that I had been far away from home, cooking the dishes I missed felt nostalgic. Also, I enjoy eating good foods, I think it's the best way to kep oneself in a good mood. ",
+
+         additionalImages: [
+            "images/fish.JPG",
+            "images/dumplings.JPG",
+            "images/breakfast.JPG"
+        ]
     },
 
     {
-        number: "03 — TC",
-        title: "Object Three",
-        image: "images/object3.jpg",
-        description: "Write your introduction here.",
-        reason: "Explain why you chose this object."
+        number: "0910",
+        title: "Button",
+        image: "images/Button.png",
+        description: "This is a button from my pajapma.",
+        reason: "I choose this object because it reminds of my favorite cartoon movie, Coraline. The concept and symbolisims used in Coraline is amazing, and I always love its details. I watched it when I was very young, there were actually a lot of elements that I don't understand as a kid, but when I watched it again, I started to see how the narrative, details, and symbols work as an art piece. I like this process of taking a step back and reflect.",
+
+        additionalImages: [
+            "images/coraline.jpg",
+        ]
     },
 
     {
-        number: "04 — TC",
-        title: "Object Four",
-        image: "images/object4.jpg",
-        description: "Write your introduction here.",
-        reason: "Explain why you chose this object."
-    },
-
+        number: "0228",
+        title: "POP MART Toys",
+        image: "images/POP MART.png",
+        description: "This is a pop mart toy from the Hirono series.",
+        reason: "I like to collective the toys and key chains from pop mart, it's a kind of gambling to be honest because it was blind box. But I see them as a social technique, I like to give blind box as small gifts to my friends, it's a good present which is always surprising.",
+    }, 
+    
     {
-        number: "05 — TC",
-        title: "Object Five",
-        image: "images/object5.jpg",
-        description: "Write your introduction here.",
-        reason: "Explain why you chose this object."
-    }
-
+        number: "0902",
+        title: "Sketchbook",
+        image: "images/Sketchbook.png",
+        description: "This is one of my sketchbook, actually my favorite one, I don't why.",
+        reason: "I bought this sketchbook during my sophomore year, there were general sketches about varies content. It's like a combination of observation and imagaination.",
+    }, 
 ];
 
 
