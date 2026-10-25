@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 06 - Time Capsule Part I</title>
     <link rel="stylesheet" href="../style.css">
+
+    <!-- LEAFLET MAP LIBRARY -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -200,24 +206,25 @@
 
 </main>
 
-
 <!-- OBJECT DETAIL POPUP -->
 
 <div id="capsule-modal" class="capsule-modal">
 
     <div class="capsule-modal-content">
 
-        <button class="capsule-close"
-                onclick="closeCapsule()">
+        <button class="capsule-close" onclick="closeCapsule()">
             ×
         </button>
 
+        <!-- OBJECT INFORMATION -->
         <div class="capsule-modal-layout">
 
+            <!-- MAIN OBJECT IMAGE -->
             <div class="capsule-modal-image">
                 <img id="capsule-detail-image" src="" alt="">
             </div>
 
+            <!-- OBJECT DESCRIPTION -->
             <div class="capsule-modal-text">
 
                 <p id="capsule-detail-number"
@@ -231,27 +238,99 @@
                 <h3>Why I Chose It</h3>
                 <p id="capsule-detail-reason"></p>
 
-
                 <!-- ADDITIONAL IMAGES -->
-
                 <div class="capsule-additional-section">
 
                     <h3>Additional Images</h3>
 
                     <div id="capsule-additional-images"
-                        class="capsule-additional-images">
+                         class="capsule-additional-images">
                     </div>
+
+                </div>
+
+                <!-- AUDIO -->
+                <div class="capsule-media-section"
+                     id="capsule-audio-section">
+
+                    <h3>Story</h3>
+
+                    <p id="capsule-audio-caption"></p>
+
+                    <audio id="capsule-audio"
+                           controls
+                           preload="none">
+                    </audio>
+
+                </div>
+
+                <!-- VIDEO -->
+                <div class="capsule-media-section"
+                     id="capsule-video-section">
+
+                    <h3>Video Documentation</h3>
+
+                    <p id="capsule-video-caption"></p>
+
+                    <video id="capsule-video"
+                           controls
+                           preload="metadata">
+                    </video>
 
                 </div>
 
             </div>
 
         </div>
+        <!-- END OF TWO-COLUMN LAYOUT -->
+
+
+        <!-- LITTLE SHEEP TRAVEL ARCHIVE -->
+        <!-- FULL WIDTH BELOW OBJECT INFORMATION -->
+
+        <div class="capsule-travel-section"
+             id="capsule-travel-section"
+             style="display: none;">
+
+            <p class="travel-label">
+                OBJECT 0817 / TRAVEL RECORD
+            </p>
+
+            <h3>Little Sheep's Travel Archive</h3>
+
+            <p class="travel-intro">
+                Starting from Beijing, Little Sheep has been
+                to different places around the world with me.
+            </p>
+
+            <!-- INTERACTIVE WORLD MAP -->
+            <div id="sheep-travel-map"></div>
+
+            <!-- MAP LEGEND -->
+            <div class="travel-map-footer">
+
+                <span>
+                    <span class="travel-dot travel-dot-origin"></span>
+                    BEIJING / ORIGIN
+                </span>
+
+                <span>
+                    <span class="travel-dot travel-dot-visited"></span>
+                    PLACES VISITED
+                </span>
+
+            </div>
+
+            <p class="travel-map-hint">
+                CLICK A LOCATION TO EXPLORE.
+                DRAG TO MOVE THE MAP.
+            </p>
+
+        </div>
 
     </div>
 
 </div>
-
 
 <script>
 
@@ -273,7 +352,7 @@ const capsuleObjects = [
         title: "Instant Camera",
         image: "images/Instant Camera.png",
         description: "This is a Fuji Wide 300 Instant Camera",
-        reason: "I like to take pictures, to record the moments I value, to remember the smiles, and to capture fulfillness. I had a photo album for my instant photos, I think physical are more expressive and unique.",
+        reason: "I like to take pictures, to record the moments I value, to remember the smiles, and to capture fulfillness. I had a photo album for my instant photos, I think physical are more expressive and unique. I feel like instant photos always create unexpected results, it captures time, it is a representation of time. This camera had been with me for four years, I tried to use it to remember my college life and friends.",
         additionalImages: [
             "images/album1.JPG",
             "images/album2.JPG"
@@ -371,7 +450,6 @@ const capsuleObjects = [
 
 ];
 
-
 function openCapsule(index) {
 
     const object = capsuleObjects[index];
@@ -431,17 +509,78 @@ function openCapsule(index) {
 
     }
 
+    /* AUDIO */
+
+    const audioSection = document.getElementById("capsule-audio-section");
+    const audioPlayer = document.getElementById("capsule-audio");
+
+    audioPlayer.pause();
+
+    if (object.audio) {
+        audioSection.style.display = "block";
+        audioPlayer.src = object.audio;
+
+        document.getElementById("capsule-audio-caption").textContent =
+            object.audioCaption || "";
+    } else {
+        audioSection.style.display = "none";
+        audioPlayer.removeAttribute("src");
+    }
+
+    audioPlayer.load();
+
+    /* VIDEO */
+
+    const videoSection = document.getElementById("capsule-video-section");
+    const videoPlayer = document.getElementById("capsule-video");
+
+    videoPlayer.pause();
+
+    if (object.video) {
+        videoSection.style.display = "block";
+        videoPlayer.src = object.video;
+
+        document.getElementById("capsule-video-caption").textContent =
+            object.videoCaption || "";
+    } else {
+        videoSection.style.display = "none";
+        videoPlayer.removeAttribute("src");
+    }
+
+    videoPlayer.load();
+
 
     // OPEN MODAL
+    /* SHOW OR HIDE LITTLE SHEEP MAP */
 
-    document.getElementById("capsule-modal")
-        .style.display = "flex";
+    const travelSection =
+        document.getElementById("capsule-travel-section");
+
+    travelSection.style.display =
+        index === 0 ? "block" : "none";
+
+
+    /* OPEN MODAL */
+
+    document.getElementById("capsule-modal").style.display = "flex";
 
     document.body.style.overflow = "hidden";
 
+
+    /* INITIALIZE MAP AFTER MODAL OPENS */
+
+    if (index === 0) {
+
+        requestAnimationFrame(function() {
+            initializeSheepMap();
+            requestAnimationFrame(function() {
+                sheepMap.invalidateSize();
+            });
+
+        });
+
+    }
 }
-
-
 
 function closeCapsule() {
 
@@ -494,6 +633,148 @@ document.addEventListener("keydown", function(event) {
     }
 
 });
+
+    /* ==========================================
+    LITTLE SHEEP TRAVEL ARCHIVE
+    ========================================== */
+
+    /* LOCATIONS */
+
+    const sheepTravelLocations = [
+
+        // ORIGIN
+        {
+            name: "Beijing",
+            lat: 39.9042,
+            lng: 116.4074,
+            origin: true
+        },
+
+        // CHINA
+        { name: "Shanghai", lat: 31.2304, lng: 121.4737 },
+        { name: "Hainan", lat: 19.2, lng: 109.7 },
+        { name: "Hong Kong", lat: 22.3193, lng: 114.1694 },
+        { name: "Macau", lat: 22.1987, lng: 113.5439 },
+        { name: "Chengdu", lat: 30.5728, lng: 104.0668 },
+        { name: "Dunhuang", lat: 40.1421, lng: 94.6619 },
+        { name: "Anhui", lat: 31.8612, lng: 117.2849 },
+
+        // JAPAN
+        { name: "Tokyo", lat: 35.6762, lng: 139.6503 },
+        { name: "Kyoto", lat: 35.0116, lng: 135.7681 },
+        { name: "Mount Fuji", lat: 35.3606, lng: 138.7274 },
+        { name: "Hakone", lat: 35.2324, lng: 139.1069 },
+        { name: "Sapporo", lat: 43.0618, lng: 141.3545 },
+        { name: "Hokkaido", lat: 43.2203, lng: 142.8635 },
+
+        // OTHER ASIAN DESTINATIONS
+        { name: "Singapore", lat: 1.3521, lng: 103.8198 },
+        { name: "Thailand", lat: 13.7563, lng: 100.5018 },
+        { name: "Seoul", lat: 37.5665, lng: 126.9780 },
+
+        // EUROPE
+        { name: "Rome", lat: 41.9028, lng: 12.4964 },
+        { name: "Paris", lat: 48.8566, lng: 2.3522 },
+        { name: "Zurich", lat: 47.3769, lng: 8.5417 },
+        { name: "Florence", lat: 43.7696, lng: 11.2558 },
+        { name: "Milan", lat: 45.4642, lng: 9.1900 },
+
+        // UNITED STATES
+        { name: "New York", lat: 40.7128, lng: -74.0060 },
+        { name: "Miami", lat: 25.7617, lng: -80.1918 },
+        { name: "Los Angeles", lat: 34.0522, lng: -118.2437 },
+        { name: "San Francisco", lat: 37.7749, lng: -122.4194 },
+        { name: "Boston", lat: 42.3601, lng: -71.0589 },
+        { name: "Alaska", lat: 61.2181, lng: -149.9003 },
+
+        // AUSTRALIA
+        { name: "Sydney", lat: -33.8688, lng: 151.2093 }
+
+    ];
+
+
+    /* MAP VARIABLE */
+
+    let sheepMap = null;
+
+
+    /* CREATE MAP */
+
+    
+function initializeSheepMap() {
+
+    if (sheepMap) {
+        sheepMap.invalidateSize();
+        return;
+    }
+
+    // CREATE MAP
+    sheepMap = L.map("sheep-travel-map", {
+        scrollWheelZoom: false,
+        worldCopyJump: true
+    });
+
+    // MAP BACKGROUND
+    L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 19
+        }
+    ).addTo(sheepMap);
+
+    // ADD LOCATION MARKERS
+    const bounds = [];
+
+   
+    sheepTravelLocations.forEach(function(location) {
+
+        const marker = L.circleMarker(
+            [location.lat, location.lng],
+            {
+                radius: location.origin ? 9 : 7,
+
+                color: location.origin
+                    ? "#ff6b35"
+                    : "#ffffff",
+
+                fillColor: location.origin
+                    ? "#ff6b35"
+                    : "#ffffff",
+
+                fillOpacity: 1,
+                weight: 1,
+
+                interactive: true,
+                bubblingMouseEvents: false
+            }
+        ).addTo(sheepMap);
+
+        // Add location popup
+        marker.bindPopup(
+            "<strong>" + location.name + "</strong>" +
+            (location.origin
+                ? "<p>Where our journey began.</p>"
+                : "")
+        );
+
+        // Open popup when clicking a marker
+        marker.on("click", function() {
+            marker.openPopup();
+        });
+
+        bounds.push([location.lat, location.lng]);
+
+    });
+
+
+    // FIT ALL LOCATIONS
+    sheepMap.fitBounds(bounds, {
+        padding: [30, 30],
+        maxZoom: 3
+    });
+
+}
 
 </script>
 
