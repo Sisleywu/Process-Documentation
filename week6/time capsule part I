@@ -34,16 +34,25 @@
     </div>
 
 
-    <!-- Object Gallery -->
+    <!-- COLLECTION GALLERY -->
 
     <section class="capsule-collection">
-
         <div class="capsule-gallery-header">
-            <h2>Object Gallery</h2>
+            <h2>Selected Objects</h2>
             <span>TIME CAPSULE / COLLECTION 01</span>
         </div>
 
-        <div class="capsule-gallery">
+         <div class="capsule-gallery-wrapper">
+
+        <!-- LEFT ARROW -->
+        <button class="capsule-arrow capsule-arrow-left"
+                onclick="scrollCapsule(-1)"
+                aria-label="Scroll left">
+            &#8592;
+        </button>
+
+          <!-- SCROLLABLE GALLERY -->
+        <div class="capsule-gallery" id="capsule-gallery">
 
             <!-- Little Sheep -->
             <div class="capsule-item"
@@ -55,7 +64,6 @@
                 <h3>Little Sheep</h3>
 
             </div>
-
 
             <!-- OBJECT 02 -->
 
@@ -69,7 +77,6 @@
                 <h3>Instant Camera</h3>
 
             </div>
-
 
             <!-- OBJECT 03 -->
 
@@ -85,7 +92,6 @@
 
             </div>
 
-
             <!-- OBJECT 04 -->
 
             <div class="capsule-item"
@@ -99,7 +105,6 @@
                 <h3>Cooking Apron</h3>
 
             </div>
-
 
             <!-- OBJECT 05 -->
 
@@ -115,13 +120,13 @@
 
             </div>
 
-             <!-- OBJECT 06 -->
+            <!-- OBJECT 06 -->
 
             <div class="capsule-item"
                  onclick="openCapsule(5)">
 
                 <div class="capsule-image">
-                    <img src="../week6/images/POP MART.png" alt="Button">
+                    <img src="../week6/images/POP MART.png" alt="pop mart!">
                 </div>
 
                 <p class="capsule-number">0228</p>
@@ -129,13 +134,13 @@
 
             </div>
 
-              <!-- OBJECT 07 -->
+            <!-- OBJECT 07 -->
 
             <div class="capsule-item"
                  onclick="openCapsule(6)">
 
                 <div class="capsule-image">
-                    <img src="../week6/images/Sketchbook.png" alt="Button">
+                    <img src="../week6/images/Sketchbook.png" alt="sketchbook">
                 </div>
 
                 <p class="capsule-number">0902</p>
@@ -143,10 +148,34 @@
 
             </div>
 
+            <!-- OBJECT 08 -->
+
+            <div class="capsule-item"
+                 onclick="openCapsule(7)">
+
+                <div class="capsule-image">
+                    <img src="../week6/images/Tag.png" alt="Tags">
+                </div>
+
+                <p class="capsule-number">1022</p>
+                <h3>Labels & Tags</h3>
+
+            </div>
+
+        </div>
+
+         <!-- RIGHT ARROW -->
+        <button class="capsule-arrow capsule-arrow-right"
+                onclick="scrollCapsule(1)"
+                aria-label="Scroll right">
+            &#8594;
+        </button>
+
         </div>
 
         <p class="capsule-hint">
-            Click an object to explore its story.
+            Scroll to explore the collection.
+            Click an object to discover its story.
         </p>
 
     </section>
@@ -286,6 +315,16 @@ const capsuleObjects = [
         description: "This is one of my sketchbook, actually my favorite one, I don't why.",
         reason: "I bought this sketchbook during my sophomore year, there were general sketches about varies content. It's like a combination of observation and imagaination.",
     }, 
+
+    {
+        number: "1022",
+        title: "Labels & Tags",
+        image: "images/Tag.png",
+        description: "Labels and Tags pieced together",
+        reason: "I swear I'll chop my hand off the next time I buy things I don't really need, especially clothes. I was poisoned by consumerism.",
+    }, 
+
+
 ];
 
 
@@ -366,6 +405,30 @@ function closeCapsule() {
         .style.display = "none";
 
     document.body.style.overflow = "";
+
+}
+
+
+/* HORIZONTAL GALLERY NAVIGATION */
+
+function scrollCapsule(direction) {
+
+    const gallery = document.getElementById("capsule-gallery");
+
+    if (!gallery) return;
+
+    const item = gallery.querySelector(".capsule-item");
+
+    if (!item) return;
+
+    const gap = parseFloat(getComputedStyle(gallery).gap) || 0;
+
+    const scrollAmount = item.getBoundingClientRect().width + gap;
+
+    gallery.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth"
+    });
 
 }
 

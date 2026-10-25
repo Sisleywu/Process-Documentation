@@ -1437,29 +1437,66 @@ body {
 }
 
 
-/* ONE-ROW GALLERY */
+
+/* ==========================================
+   WEEK 06 - HORIZONTAL SCROLL GALLERY
+========================================== */
+
+/* GALLERY CONTAINER */
+
+.capsule-gallery-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+
+/* HORIZONTAL GALLERY */
 
 .capsule-gallery {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 18px;
-    background: #f7f7f7;
-    padding: 30px;
-    align-items: start;
+    display: flex;
+    gap: 20px;
+
+    width: 100%;
+    padding: 30px 45px;
+
+    background-color: #f7f7f7;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+    box-sizing: border-box;
 }
 
+.capsule-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* EACH OBJECT */
+
 .capsule-item {
+    flex: 0 0 240px;
     min-width: 0;
     cursor: pointer;
+    scroll-snap-align: start;
 }
+
+
+/* OBJECT IMAGE */
 
 .capsule-image {
     width: 100%;
-    height: 220px;
+    height: 240px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ededed;
+
+    background-color: #ededed;
     overflow: hidden;
 }
 
@@ -1468,12 +1505,16 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
+
     transition: transform 0.25s ease;
 }
 
 .capsule-item:hover img {
     transform: scale(1.04);
 }
+
+
+/* OBJECT LABELS */
 
 .capsule-number {
     font-size: 11px;
@@ -1487,11 +1528,58 @@ body {
     margin: 0;
 }
 
+
+/* ==========================================
+   GALLERY ARROWS
+========================================== */
+
+.capsule-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #ddd;
+    border-radius: 50%;
+
+    background-color: white;
+    color: #333;
+
+    font-size: 22px;
+    cursor: pointer;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: background-color 0.2s ease;
+}
+
+.capsule-arrow:hover {
+    background-color: #eaeaea;
+}
+
+.capsule-arrow-left {
+    left: 8px;
+}
+
+.capsule-arrow-right {
+    right: 8px;
+}
+
+
+/* GALLERY HINT */
+
 .capsule-hint {
     font-size: 13px;
     color: #999;
     margin-top: 20px;
 }
+
 
 
 /* ==========================================
