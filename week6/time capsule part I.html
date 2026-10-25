@@ -228,26 +228,9 @@
                 <!-- ADDITIONAL IMAGES -->
                 <div class="capsule-additional-section">
 
-                    <h3>Additional Images</h3>
-
                     <div id="capsule-additional-images"
                          class="capsule-additional-images">
                     </div>
-
-                </div>
-
-                <!-- AUDIO -->
-                <div class="capsule-media-section"
-                     id="capsule-audio-section">
-
-                    <h3>Story</h3>
-
-                    <p id="capsule-audio-caption"></p>
-
-                    <audio id="capsule-audio"
-                           controls
-                           preload="none">
-                    </audio>
 
                 </div>
 
@@ -269,11 +252,42 @@
             </div>
 
         </div>
-        <!-- END OF TWO-COLUMN LAYOUT -->
 
+        <!-- INSTANT CAMERA PHOTO ALBUM -->
+            <div class="capsule-album-section"
+                id="capsule-album-section"
+                style="display: none;">
+
+                <h3>Album</h3>
+                <div class="capsule-album">
+                    <button class="album-arrow"
+                            onclick="turnAlbumPage(-1)"
+                            aria-label="Previous pages">
+                            &#8592;
+                    </button>
+
+                    <div class="album-spread">
+                        <!-- LEFT PAGE -->
+                        <div class="album-page">
+                            <img id="album-left-image" src="" alt="Left album page">
+                        </div>
+                        <!-- RIGHT PAGE -->
+                        <div class="album-page">
+                            <img id="album-right-image" src="" alt="Right album page">
+                        </div>
+                    </div>
+                    <button class="album-arrow"
+                            onclick="turnAlbumPage(1)"
+                            aria-label="Next pages">
+                        &#8594;
+                    </button>
+                </div>
+
+                <p class="album-page-number" id="album-page-number"></p>
+
+            </div>
 
         <!-- LITTLE SHEEP TRAVEL ARCHIVE -->
-        <!-- FULL WIDTH BELOW OBJECT INFORMATION -->
 
         <div class="capsule-travel-section"
              id="capsule-travel-section"
@@ -340,9 +354,17 @@ const capsuleObjects = [
         image: "images/Instant Camera.png",
         description: "This is a Fuji Wide 300 Instant Camera",
         reason: "I like to take pictures, to record the moments I value, to remember the smiles, and to capture fulfillness. I had a photo album for my instant photos, I think physical are more expressive and unique. I feel like instant photos always create unexpected results, it captures time, it is a representation of time. This camera had been with me for four years, I tried to use it to remember my college life and friends.",
-        additionalImages: [
-            "images/album1.JPG",
-            "images/album2.JPG"
+        albumPages: [
+        "images/album1.JPG",
+        "images/album2.JPG",
+        "images/album3.JPG",
+        "images/album4.JPG",
+        "images/album5.JPG",
+        "images/album6.JPG",
+        "images/album7.JPG",
+        "images/album8.JPG",
+        "images/album9.JPG",
+        "images/album10.JPG",
         ]
     },
 
@@ -353,10 +375,19 @@ const capsuleObjects = [
         description: "This is a apron for cooking, I used it when I cook.",
         reason: "I like to cook since I went to college. It's the first time that I had been far away from home, cooking the dishes I missed felt nostalgic. Also, I enjoy eating good foods, I think it's the best way to kep oneself in a good mood. ",
 
-         additionalImages: [
-            "images/fish.JPG",
-            "images/dumplings.JPG",
-            "images/breakfast.JPG"
+         audioClips: [
+        {
+            title: "Cooking 01",
+            src: "audio/c1.m4a"
+        },
+        {
+            title: "Cooking 02",
+            src: "audio/c2.m4a"
+        },
+        {
+            title: "Cooking 03",
+            src: "audio/c3.m4a"
+        }
         ]
     },
 
@@ -387,12 +418,12 @@ const capsuleObjects = [
         description: "This is one of my sketchbook, actually my favorite one, I don't why.",
         reason: "I bought this sketchbook during my sophomore year, there were general sketches about varies content. It's like a combination of observation and imagaination.",
 
-        additionalImages: [
-            "images/skb1.JPG",
-            "images/skb2.JPG",
-            "images/skb3.JPG"
+      additionalImages: [
+        "images/skb1.JPG",
+        "images/skb2.JPG",
+        "images/skb3.JPG"
         ]
-    }, 
+    },
 
     {
         number: "1022",
@@ -423,6 +454,70 @@ const capsuleObjects = [
     }, 
 
 ];
+
+
+/* INSTANT CAMERA TWO-PAGE ALBUM */
+
+let currentAlbumPages = [];
+let currentAlbumIndex = 0;
+
+function displayAlbumPage() {
+
+    if (currentAlbumPages.length === 0) return;
+
+    const leftImage =
+        document.getElementById("album-left-image");
+
+    const rightImage =
+        document.getElementById("album-right-image");
+
+    // LEFT PAGE
+    leftImage.src = currentAlbumPages[currentAlbumIndex];
+    leftImage.style.display = "block";
+
+    // RIGHT PAGE
+    const rightIndex = currentAlbumIndex + 1;
+
+    if (rightIndex < currentAlbumPages.length) {
+        rightImage.src = currentAlbumPages[rightIndex];
+        rightImage.style.display = "block";
+    } else {
+        rightImage.removeAttribute("src");
+        rightImage.style.display = "none";
+    }
+
+    // PAGE NUMBERS
+    const firstPage = currentAlbumIndex + 1;
+    const lastPage = Math.min(
+        currentAlbumIndex + 2,
+        currentAlbumPages.length
+    );
+
+    document.getElementById("album-page-number").textContent =
+        "PAGES " +
+        String(firstPage).padStart(2, "0") +
+        "–" +
+        String(lastPage).padStart(2, "0") +
+        " / " +
+        String(currentAlbumPages.length).padStart(2, "0");
+}
+
+function turnAlbumPage(direction) {
+
+    if (currentAlbumPages.length === 0) return;
+
+    const totalSpreads = Math.ceil(currentAlbumPages.length / 2);
+
+    const currentSpread = Math.floor(currentAlbumIndex / 2);
+
+    const nextSpread =
+        (currentSpread + direction + totalSpreads)
+        % totalSpreads;
+
+    currentAlbumIndex = nextSpread * 2;
+
+    displayAlbumPage();
+}
 
 function openCapsule(index) {
 
@@ -456,6 +551,20 @@ function openCapsule(index) {
         ".capsule-additional-section"
     );
 
+    /* SHOW PHOTO ALBUM ONLY WHEN AVAILABLE */
+    const albumSection =
+        document.getElementById("capsule-album-section");
+
+    currentAlbumPages = object.albumPages || [];
+    currentAlbumIndex = 0;
+
+    if (currentAlbumPages.length > 0) {
+        albumSection.style.display = "block";
+        displayAlbumPage();
+    } else {
+        albumSection.style.display = "none";
+    }
+
     const images = object.additionalImages || [];
 
     if (images.length > 0) {
@@ -482,26 +591,6 @@ function openCapsule(index) {
         additionalSection.style.display = "none";
 
     }
-
-    /* AUDIO */
-
-    const audioSection = document.getElementById("capsule-audio-section");
-    const audioPlayer = document.getElementById("capsule-audio");
-
-    audioPlayer.pause();
-
-    if (object.audio) {
-        audioSection.style.display = "block";
-        audioPlayer.src = object.audio;
-
-        document.getElementById("capsule-audio-caption").textContent =
-            object.audioCaption || "";
-    } else {
-        audioSection.style.display = "none";
-        audioPlayer.removeAttribute("src");
-    }
-
-    audioPlayer.load();
 
     /* VIDEO */
 
