@@ -1389,3 +1389,190 @@ body {
     margin-top: 20px;
 }
 
+
+/* ==========================================
+   WEEK 06 - TIME CAPSULE PART I
+========================================== */
+
+.time-capsule-page {
+    max-width: 1450px;
+}
+
+.time-capsule-page .doc-header {
+    margin-bottom: 60px;
+}
+
+
+/* INTRODUCTION */
+
+.capsule-introduction {
+    max-width: 850px;
+    margin-bottom: 100px;
+}
+
+.capsule-introduction p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* GALLERY HEADER */
+
+.capsule-gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.capsule-gallery-header h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.capsule-gallery-header span {
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+
+/* ONE-ROW GALLERY */
+
+.capsule-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+    background: #f7f7f7;
+    padding: 30px;
+    align-items: start;
+}
+
+.capsule-item {
+    min-width: 0;
+    cursor: pointer;
+}
+
+.capsule-image {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ededed;
+    overflow: hidden;
+}
+
+.capsule-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+.capsule-item:hover img {
+    transform: scale(1.04);
+}
+
+.capsule-number {
+    font-size: 11px;
+    color: #999;
+    margin: 12px 0 5px;
+}
+
+.capsule-item h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.capsule-hint {
+    font-size: 13px;
+    color: #999;
+    margin-top: 20px;
+}
+
+
+/* ==========================================
+   OBJECT DETAIL MODAL
+========================================== */
+
+.capsule-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    z-index: 4000;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.capsule-modal-content {
+    position: relative;
+    background: white;
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 55px;
+    box-sizing: border-box;
+}
+
+.capsule-close {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    border: none;
+    background: none;
+    font-size: 36px;
+    cursor: pointer;
+    color: #333;
+}
+
+.capsule-modal-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.capsule-modal-image {
+    background: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capsule-modal-image img {
+    display: block;
+    width: 100%;
+    max-height: 600px;
+    height: auto;
+    object-fit: contain;
+}
+
+.capsule-detail-number {
+    font-size: 12px;
+    color: #999;
+    margin: 0 0 15px;
+}
+
+.capsule-modal-text h2 {
+    font-size: 32px;
+    margin: 0 0 45px;
+}
+
+.capsule-modal-text h3 {
+    font-size: 18px;
+    margin: 35px 0 15px;
+}
+
+.capsule-modal-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+}

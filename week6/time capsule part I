@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 06 - Time Capsule Part I</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<main class="documentation-page time-capsule-page">
+
+    <a class="back" href="../index.html">← Back</a>
+
+    <!-- HEADER -->
+    <header class="doc-header">
+        <p class="project-label">
+            Week 06 — Ideation & Prototyping
+        </p>
+
+        <h1>Time Capsule — Part I</h1>
+    </header>
+
+
+    <!-- INTRODUCTION -->
+
+    <div class="capsule-introduction">
+        <p>
+            This is my object gallery. 
+        </p>
+    </div>
+
+
+    <!-- Object Gallery -->
+
+    <section class="capsule-collection">
+
+        <div class="capsule-gallery-header">
+            <h2>Object Gallery</h2>
+            <span>TIME CAPSULE / COLLECTION 01</span>
+        </div>
+
+        <div class="capsule-gallery">
+
+            <!-- Little Sheep -->
+            <div class="capsule-item"
+                 onclick="openCapsule(0)">
+                <div class="capsule-image">
+                    <img src="../week6/images/little sheep.png" alt="Little Sheep">
+                </div>
+
+                <p class="capsule-number">01 — Little Sheep</p>
+                <h3>Little Sheep</h3>
+
+            </div>
+
+
+            <!-- OBJECT 02 -->
+
+            <div class="capsule-item"
+                 onclick="openCapsule(1)">
+
+                <div class="capsule-image">
+                    <img src="images/object2.jpg"
+                         alt="Object 2">
+                </div>
+
+                <p class="capsule-number">02 — TC</p>
+                <h3>Object Two</h3>
+
+            </div>
+
+
+            <!-- OBJECT 03 -->
+
+            <div class="capsule-item"
+                 onclick="openCapsule(2)">
+
+                <div class="capsule-image">
+                    <img src="images/object3.jpg"
+                         alt="Object 3">
+                </div>
+
+                <p class="capsule-number">03 — TC</p>
+                <h3>Object Three</h3>
+
+            </div>
+
+
+            <!-- OBJECT 04 -->
+
+            <div class="capsule-item"
+                 onclick="openCapsule(3)">
+
+                <div class="capsule-image">
+                    <img src="images/object4.jpg"
+                         alt="Object 4">
+                </div>
+
+                <p class="capsule-number">04 — TC</p>
+                <h3>Object Four</h3>
+
+            </div>
+
+
+            <!-- OBJECT 05 -->
+
+            <div class="capsule-item"
+                 onclick="openCapsule(4)">
+
+                <div class="capsule-image">
+                    <img src="images/object5.jpg"
+                         alt="Object 5">
+                </div>
+
+                <p class="capsule-number">05 — TC</p>
+                <h3>Object Five</h3>
+
+            </div>
+
+        </div>
+
+        <p class="capsule-hint">
+            Click an object to explore its story.
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- OBJECT DETAIL POPUP -->
+
+<div id="capsule-modal" class="capsule-modal">
+
+    <div class="capsule-modal-content">
+
+        <button class="capsule-close"
+                onclick="closeCapsule()">
+            ×
+        </button>
+
+        <div class="capsule-modal-layout">
+
+            <div class="capsule-modal-image">
+                <img id="capsule-detail-image" src="" alt="">
+            </div>
+
+            <div class="capsule-modal-text">
+
+                <p id="capsule-detail-number"
+                   class="capsule-detail-number"></p>
+
+                <h2 id="capsule-detail-title"></h2>
+
+                <h3>About the Object</h3>
+                <p id="capsule-detail-description"></p>
+
+                <h3>Why I Chose It</h3>
+                <p id="capsule-detail-reason"></p>
+
+
+                <!-- ADDITIONAL IMAGES -->
+
+                <div class="capsule-additional-section">
+
+                    <h3>Additional Images</h3>
+
+                    <div id="capsule-additional-images"
+                        class="capsule-additional-images">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const capsuleObjects = [
+
+    {
+        number: "01 — Little Sheep",
+        title: "Little Sheep",
+        image: "images/little sheep.jpg",
+        description: "This is little sheep, little sheep is a plushed toy. I love little sheep and little sheep is my family.",
+        reason: "I received little sheep as a birth gift from my neighbour, so little had been with me since I was born untill now. Little sheep really meant a lot to me, it's my frist friend. The neighbour who give it to me was a olg man who works in traditional Chinese art. I think there is some sense of spirit inherited from him, that even though no in my family ever worked in the art field, yet I born with this interest in art.",
+
+        additionalImages: [
+        "images/little sheep detail1.jpg",
+        "images/little sheep detail2.jpg",
+        "images/little sheep detail3.jpg"
+    ]
+    },
+
+    {
+        number: "02 — ",
+        title: "Object Two",
+        image: "images/object2.jpg",
+        description: "Write your introduction here.",
+        reason: "Explain why you chose this object."
+    },
+
+    {
+        number: "03 — TC",
+        title: "Object Three",
+        image: "images/object3.jpg",
+        description: "Write your introduction here.",
+        reason: "Explain why you chose this object."
+    },
+
+    {
+        number: "04 — TC",
+        title: "Object Four",
+        image: "images/object4.jpg",
+        description: "Write your introduction here.",
+        reason: "Explain why you chose this object."
+    },
+
+    {
+        number: "05 — TC",
+        title: "Object Five",
+        image: "images/object5.jpg",
+        description: "Write your introduction here.",
+        reason: "Explain why you chose this object."
+    }
+
+];
+
+
+function openCapsule(index) {
+
+    const object = capsuleObjects[index];
+
+    document.getElementById("capsule-detail-number")
+        .textContent = object.number;
+
+    document.getElementById("capsule-detail-title")
+        .textContent = object.title;
+
+    document.getElementById("capsule-detail-image")
+        .src = object.image;
+
+    document.getElementById("capsule-detail-description")
+        .textContent = object.description;
+
+    document.getElementById("capsule-detail-reason")
+        .textContent = object.reason;
+
+
+    // ADDITIONAL IMAGES
+
+    const gallery = document.getElementById(
+        "capsule-additional-images"
+    );
+
+    gallery.innerHTML = "";
+
+    const additionalSection = document.querySelector(
+        ".capsule-additional-section"
+    );
+
+    const images = object.additionalImages || [];
+
+    if (images.length > 0) {
+
+        additionalSection.style.display = "block";
+
+        images.forEach(function(imagePath) {
+
+            const img = document.createElement("img");
+
+            img.src = imagePath;
+            img.alt = object.title + " additional image";
+
+            img.addEventListener("click", function() {
+                window.open(imagePath, "_blank");
+            });
+
+            gallery.appendChild(img);
+
+        });
+
+    } else {
+
+        additionalSection.style.display = "none";
+
+    }
+
+
+    // OPEN MODAL
+
+    document.getElementById("capsule-modal")
+        .style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+
+function closeCapsule() {
+
+    document.getElementById("capsule-modal")
+        .style.display = "none";
+
+    document.body.style.overflow = "";
+
+}
+
+
+document.getElementById("capsule-modal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            closeCapsule();
+        }
+
+    });
+
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeCapsule();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
