@@ -1448,12 +1448,10 @@ body {
 .capsule-gallery {
     display: flex;
     align-items: flex-end;
-    gap: 35px;
+    gap: 12px;
 
     width: 100%;
     padding: 45px 55px 30px;
-
-    background: #fafafa;
 
     overflow-x: auto;
     overflow-y: hidden;
@@ -1694,5 +1692,110 @@ body {
 
 .capsule-additional-images img:hover {
     opacity: 0.8;
+}
+
+
+/* =====================================
+   WEEK 06 - BLACK ARCHIVE STYLE
+===================================== */
+
+body:has(.time-capsule-page) {
+    background-color: #000;
+}
+
+.time-capsule-page {
+    background-color: #000;
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+    max-width: 1450px;
+}
+
+/* ALL TEXT */
+
+.time-capsule-page h1,
+.time-capsule-page h2,
+.time-capsule-page h3,
+.time-capsule-page p,
+.time-capsule-page span,
+.time-capsule-page a {
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* SMALL SECONDARY TEXT */
+
+.time-capsule-page .project-label,
+.time-capsule-page .capsule-gallery-header span,
+.time-capsule-page .capsule-hint {
+    color: #aaa;
+}
+
+
+/* GALLERY - NO BACKGROUND BOX */
+
+.time-capsule-page .capsule-gallery {
+    display: flex;
+    align-items: flex-end;
+
+    gap: 12px;
+
+    width: 100%;
+    padding: 20px 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    box-sizing: border-box;
+}
+
+.time-capsule-page .capsule-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+/* EACH OBJECT */
+
+.time-capsule-page .capsule-item {
+    flex: 0 0 230px;
+    min-width: 0;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+
+/* PNG IMAGE */
+
+.time-capsule-page .capsule-image {
+    width: 100%;
+    height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: none;
+}
+
+.time-capsule-page .capsule-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+}
+
+/* OBJECT NUMBER */
+
+.time-capsule-page .capsule-number {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 18px;
+    color: #fff;
+    margin-top: 15px;
+    letter-spacing: 1px;
 }
 
