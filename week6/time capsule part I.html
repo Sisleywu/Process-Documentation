@@ -252,6 +252,40 @@
 
         </div>
 
+        <!-- POP MART BLIND BOX -->
+
+        <div id="capsule-blindbox-section"
+            class="capsule-blindbox-section"
+            style="display: none;">
+
+            <p class="blindbox-label">OBJECT 0228 / BLIND BOX EXPERIENCE</p>
+
+            <h3>What's Inside?</h3>
+
+            <button type="button"
+                    id="blindbox-button"
+                    class="blindbox-button"
+                    onclick="openBlindBox()">
+
+                <img id="blindbox.png" src="" alt="Unopened blind box">
+
+            </button>
+
+            <p id="blindbox-instruction">
+                CLICK THE BOX TO OPEN
+            </p>
+
+            <button type="button"
+                    id="blindbox-reset"
+                    class="blindbox-reset"
+                    onclick="resetBlindBox()"
+                    style="display: none;">
+                OPEN AGAIN ↻
+            </button>
+
+        </div>
+
+
         <!-- APRON AUDIO ARCHIVE -->
 
         <div class="capsule-sound-section"
@@ -413,6 +447,11 @@ const capsuleObjects = [
         image: "images/POP MART.png",
         description: "This is a pop mart toy from the Hirono series.",
         reason: "I like to collective the toys and key chains from pop mart, it's a kind of gambling to be honest because it was blind box. The fullfillment of getting the one I want cannot be replaced than directly buying one. I also see them as a social technique, I like to give blind box as small gifts to my friends, it's a good present which is always surprising.",
+
+        blindBox: {
+        closedImage: "images/blindbox.png",
+        revealImage: "images/POP MART.png",
+        }
     }, 
     
     {
@@ -523,9 +562,83 @@ function turnAlbumPage(direction) {
     displayAlbumPage();
 }
 
+
+/* POP MART BLIND BOX INTERACTION */
+
+let currentBlindBox = null;
+let blindBoxOpened = false;
+let blindBoxTimer = null;
+
+function resetBlindBox() {
+    if (!currentBlindBox) return;
+
+    clearTimeout(blindBoxTimer);
+    blindBoxOpened = false;
+
+    const button = document.getElementById("blindbox-button");
+    const image = document.getElementById("blindbox-image");
+
+    button.disabled = false;
+    button.classList.remove("opening", "revealed");
+
+    image.src = currentBlindBox.closedImage;
+
+    document.getElementById("blindbox-instruction").textContent =
+        "CLICK THE BOX TO OPEN";
+
+    document.getElementById("blindbox-reset").style.display = "none";
+}
+
+function openBlindBox() {
+    if (!currentBlindBox || blindBoxOpened) return;
+
+    blindBoxOpened = true;
+
+    const button = document.getElementById("blindbox-button");
+    const image = document.getElementById("blindbox-image");
+
+    button.disabled = true;
+    button.classList.add("opening");
+
+    document.getElementById("blindbox-instruction").textContent =
+        "OPENING...";
+
+    blindBoxTimer = setTimeout(function() {
+        image.src = currentBlindBox.revealImage;
+
+        button.classList.remove("opening");
+        button.classList.add("revealed");
+
+        document.getElementById("blindbox-instruction").textContent =
+            "YOU FOUND IT!";
+
+        document.getElementById("blindbox-reset").style.display =
+            "inline-block";
+
+        blindBoxTimer = null;
+    }, 1100);
+}
+
 function openCapsule(index) {
 
     const object = capsuleObjects[index];
+
+    /* SHOW BLIND BOX ONLY FOR OBJECTS WITH blindBox */
+
+    const blindBoxSection =
+        document.getElementById("capsule-blindbox-section");
+
+    clearTimeout(blindBoxTimer);
+    blindBoxTimer = null;
+
+    currentBlindBox = object.blindBox || null;
+
+    if (currentBlindBox) {
+        blindBoxSection.style.display = "block";
+        resetBlindBox();
+    } else {
+        blindBoxSection.style.display = "none";
+    }
 
     /* APRON SOUND ARCHIVE */
     const soundSection =
@@ -594,6 +707,10 @@ function openCapsule(index) {
 
     document.getElementById("capsule-detail-image")
         .src = object.image;
+        const detailImage = document.getElementById("capsule-detail-image");
+        if (object.blindBox) {
+            detailImage.src = object.blindBox.closedImage;
+        }
 
     document.getElementById("capsule-detail-description")
         .textContent = object.description;
@@ -709,6 +826,9 @@ function openCapsule(index) {
 }
 
 function closeCapsule() {
+    
+    clearTimeout(blindBoxTimer);
+    blindBoxTimer = null;
 
     document.querySelectorAll(".capsule-sound-list audio")
     .forEach(function(audio) {
@@ -721,7 +841,6 @@ function closeCapsule() {
 
     document.body.style.overflow = "";
     
-
 }
 
 
