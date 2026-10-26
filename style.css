@@ -2646,3 +2646,128 @@ body:has(.time-capsule-page) .capsule-travel-section {
         transform: translateY(0);
     }
 }
+
+
+/* CORALINE SEWING INTERACTION */
+
+.capsule-sewing-section {
+    margin-top: 50px;
+    padding: 40px 0;
+    border-top: 1px solid #444;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    color: white;
+}
+
+.sewing-label {
+    color: #888 !important;
+    font-size: 12px !important;
+    letter-spacing: 2px;
+}
+
+.capsule-sewing-section h3 {
+    color: white;
+    font-size: 26px;
+    font-weight: normal;
+    margin: 20px 0;
+}
+
+#sewing-instruction,
+#sewing-progress {
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.sewing-stage {
+    position: relative;
+    max-width: 700px;
+    margin: 30px auto;
+    background: #101015;
+    overflow: hidden;
+}
+
+#sewing-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    touch-action: none;
+    cursor: none;
+}
+
+#sewing-svg circle.sewing-guide {
+    fill: transparent !important;
+    stroke: #aaaaaa !important;
+    stroke-width: 2.5px !important;
+    stroke-dasharray: 6 9 !important;
+    opacity: 1 !important;
+}
+
+#sewing-svg circle.sewing-line {
+    fill: none !important;
+    stroke: #8b2635 !important;
+    stroke-width: 4px !important;
+    stroke-linecap: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: rotate(-90deg);
+    pointer-events: none;
+}
+
+.sewing-holes {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.sewing-holes circle {
+    fill: #bbb;
+}
+
+#sewing-needle {
+    pointer-events: none;
+}
+
+.sewing-ending {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.94);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease, visibility 1.5s;
+}
+
+.sewing-ending.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sewing-ending p {
+    color: #aaa !important;
+    letter-spacing: 5px;
+    font-size: 13px !important;
+}
+
+.sewing-ending h2 {
+    color: #fff;
+    font-size: clamp(20px, 4vw, 38px);
+    letter-spacing: 3px;
+    font-weight: normal;
+}
+
+.sewing-reset {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid #666;
+    padding: 12px 25px;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    cursor: pointer;
+}
+
+.sewing-reset:hover {
+    background: #333;
+}

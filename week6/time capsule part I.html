@@ -340,6 +340,95 @@
 
         </div>
 
+        <!-- CORALINE SEWING INTERACTION -->
+
+        <div id="capsule-sewing-section"
+            class="capsule-sewing-section"
+            style="display: none;">
+
+            <p class="sewing-label">OBJECT 0910 / CORALINE</p>
+            <h3>SEW YOUR EYES</h3>
+
+            <p id="sewing-instruction">
+                Follow the dotted lines with your needle.
+            </p>
+
+            <div id="sewing-stage" class="sewing-stage">
+
+                <svg id="sewing-svg"
+                    viewBox="0 0 600 300"
+                    xmlns="http://www.w3.org/2000/svg">
+
+                    <!-- Left button guide -->
+                    <circle class="sewing-guide"
+                            cx="190" cy="150" r="70"/>
+
+                    <!-- Right button guide -->
+                    <circle class="sewing-guide"
+                            cx="410" cy="150" r="70"/>
+
+                    <!-- Completed stitching -->
+                    <circle id="sewing-line-0"
+                            class="sewing-line"
+                            cx="190" cy="150" r="70"/>
+
+                    <circle id="sewing-line-1"
+                            class="sewing-line"
+                            cx="410" cy="150" r="70"/>
+
+                    <!-- Button holes -->
+                    <g id="sewing-holes-0"
+                    class="sewing-holes"
+                    transform="translate(190 150)">
+                        <circle cx="-17" cy="-17" r="6"/>
+                        <circle cx="17" cy="-17" r="6"/>
+                        <circle cx="-17" cy="17" r="6"/>
+                        <circle cx="17" cy="17" r="6"/>
+                    </g>
+
+                    <g id="sewing-holes-1"
+                    class="sewing-holes"
+                    transform="translate(410 150)">
+                        <circle cx="-17" cy="-17" r="6"/>
+                        <circle cx="17" cy="-17" r="6"/>
+                        <circle cx="-17" cy="17" r="6"/>
+                        <circle cx="17" cy="17" r="6"/>
+                    </g>
+
+                    <!-- Needle -->
+                    <g id="sewing-needle">
+                        <line x1="0" y1="-28"
+                            x2="0" y2="25"
+                            stroke="#ddd"
+                            stroke-width="3"
+                            stroke-linecap="round"/>
+
+                        <ellipse cx="0" cy="-19"
+                                rx="3" ry="7"
+                                fill="none"
+                                stroke="#ddd"
+                                stroke-width="1.5"/>
+                    </g>
+
+                </svg>
+
+                <div id="sewing-ending" class="sewing-ending">
+                    <p>WELCOME TO</p>
+                    <h2>THE OTHER WORLD</h2>
+                </div>
+
+            </div>
+
+            <p id="sewing-progress">0 / 2 BUTTONS SEWN</p>
+
+            <button type="button"
+                    class="sewing-reset"
+                    onclick="resetSewing()">
+                ↻ START AGAIN
+            </button>
+
+        </div>
+
         <!-- APRON AUDIO ARCHIVE -->
 
         <div class="capsule-sound-section"
@@ -492,7 +581,9 @@ const capsuleObjects = [
 
         additionalImages: [
             "images/coraline.jpg",
-        ]
+        ],
+
+        sewing: true
     },
 
     {
@@ -809,9 +900,248 @@ function nextConversationMessage() {
     }
 }
 
+/* CORALINE SEWING */
+
+const sewingCircumference = 2 * Math.PI * 70;
+const sewingCenters = [
+    { x: 190, y: 150 },
+    { x: 410, y: 150 }
+];
+
+let sewingProgress = [0, 0];
+let sewingActive = false;
+let sewingFinished = false;
+let sewingLastAngle = null;
+let sewingPointerId = null;
+let sewingEndingTimer = null;
+
+function resetSewing() {
+    clearTimeout(sewingEndingTimer);
+
+    sewingProgress = [0, 0];
+    sewingActive = false;
+    sewingFinished = false;
+    sewingLastAngle = null;
+    sewingPointerId = null;
+
+    const svg = document.getElementById("sewing-svg");
+    if (!svg) return;
+
+    svg.style.opacity = "1";
+
+    for (let i = 0; i < 2; i++) {
+        const line = document.getElementById("sewing-line-" + i);
+        const holes = document.getElementById("sewing-holes-" + i);
+
+        line.style.strokeDasharray = sewingCircumference;
+        line.style.strokeDashoffset = sewingCircumference;
+        holes.style.opacity = "0";
+    }
+
+    document.getElementById("sewing-ending")
+        .classList.remove("visible");
+
+    document.getElementById("sewing-progress").textContent =
+        "0 / 2 BUTTONS SEWN";
+
+    document.getElementById("sewing-instruction").textContent =
+        "Follow the dotted lines with your needle.";
+
+    moveSewingNeedle(190, 80);
+}
+
+function moveSewingNeedle(x, y) {
+    const needle = document.getElementById("sewing-needle");
+    if (needle) {
+        needle.setAttribute(
+            "transform",
+            `translate(${x} ${y}) rotate(30)`
+        );
+    }
+}
+
+function sewingPosition(event) {
+    const svg = document.getElementById("sewing-svg");
+    const point = svg.createSVGPoint();
+
+    point.x = event.clientX;
+    point.y = event.clientY;
+
+    const matrix = svg.getScreenCTM();
+    if (!matrix) return null;
+
+    return point.matrixTransform(matrix.inverse());
+}
+
+function sewingCurrentButton() {
+    return sewingProgress[0] < 1 ? 0 :
+           sewingProgress[1] < 1 ? 1 : -1;
+}
+
+function sewingAngle(point, center) {
+    return Math.atan2(
+        point.y - center.y,
+        point.x - center.x
+    );
+}
+
+function sewingNearCircle(point, center) {
+    const distance = Math.hypot(
+        point.x - center.x,
+        point.y - center.y
+    );
+
+    return Math.abs(distance - 70) < 22;
+}
+
+function sewingPointerDown(event) {
+    if (sewingFinished) return;
+
+    const index = sewingCurrentButton();
+    if (index === -1) return;
+
+    const point = sewingPosition(event);
+    if (!point) return;
+
+    const center = sewingCenters[index];
+
+    if (!sewingNearCircle(point, center)) return;
+
+    sewingActive = true;
+    sewingPointerId = event.pointerId;
+    sewingLastAngle = sewingAngle(point, center);
+
+    event.currentTarget.setPointerCapture(event.pointerId);
+
+    moveSewingNeedle(point.x, point.y);
+}
+
+function sewingPointerMove(event) {
+    const point = sewingPosition(event);
+    if (!point) return;
+
+    moveSewingNeedle(point.x, point.y);
+
+    if (!sewingActive ||
+        event.pointerId !== sewingPointerId) return;
+
+    const index = sewingCurrentButton();
+    if (index === -1) return;
+
+    const center = sewingCenters[index];
+
+    if (!sewingNearCircle(point, center)) {
+        sewingLastAngle = null;
+        return;
+    }
+
+    const angle = sewingAngle(point, center);
+
+    if (sewingLastAngle === null) {
+        sewingLastAngle = angle;
+        return;
+    }
+
+    let delta = angle - sewingLastAngle;
+
+    if (delta > Math.PI) delta -= 2 * Math.PI;
+    if (delta < -Math.PI) delta += 2 * Math.PI;
+
+    sewingLastAngle = angle;
+
+    // Count movement in either direction.
+    const movement = Math.abs(delta);
+
+    if (movement > 0.35) return;
+
+    sewingProgress[index] = Math.min(
+        1,
+        sewingProgress[index] + movement / (2 * Math.PI)
+    );
+
+    const line =
+        document.getElementById("sewing-line-" + index);
+
+    line.style.strokeDashoffset =
+        sewingCircumference * (1 - sewingProgress[index]);
+
+    if (sewingProgress[index] >= 0.985) {
+        sewingProgress[index] = 1;
+        line.style.strokeDashoffset = 0;
+
+        document.getElementById(
+            "sewing-holes-" + index
+        ).style.opacity = "1";
+
+        sewingActive = false;
+        sewingLastAngle = null;
+
+        const completed = sewingProgress.filter(
+            value => value === 1
+        ).length;
+
+        document.getElementById("sewing-progress").textContent =
+            completed + " / 2 BUTTONS SEWN";
+
+        if (completed === 1) {
+            document.getElementById("sewing-instruction")
+                .textContent = "Now sew the second button.";
+
+            moveSewingNeedle(410, 80);
+        } else {
+            sewingFinished = true;
+
+            document.getElementById("sewing-instruction")
+                .textContent = "The other world is waiting...";
+
+            sewingEndingTimer = setTimeout(() => {
+                document.getElementById("sewing-ending")
+                    .classList.add("visible");
+            }, 650);
+        }
+    }
+}
+
+function sewingPointerUp(event) {
+    sewingActive = false;
+    sewingLastAngle = null;
+    sewingPointerId = null;
+
+    const svg = document.getElementById("sewing-svg");
+
+    if (svg && svg.hasPointerCapture(event.pointerId)) {
+        svg.releasePointerCapture(event.pointerId);
+    }
+}
+
+function setupSewing() {
+    const svg = document.getElementById("sewing-svg");
+    if (!svg || svg.dataset.initialized === "true") return;
+
+    svg.addEventListener("pointerdown", sewingPointerDown);
+    svg.addEventListener("pointermove", sewingPointerMove);
+    svg.addEventListener("pointerup", sewingPointerUp);
+    svg.addEventListener("pointercancel", sewingPointerUp);
+
+    svg.dataset.initialized = "true";
+}
+
 function openCapsule(index) {
 
     const object = capsuleObjects[index];
+
+    /* CORALINE SEWING SECTION */
+
+    const sewingSection =
+        document.getElementById("capsule-sewing-section");
+
+    if (object.sewing) {
+        sewingSection.style.display = "block";
+        setupSewing();
+        resetSewing();
+    } else {
+        sewingSection.style.display = "none";
+    }
 
     /* SHOW CONVERSATION ONLY FOR CUP */
 
@@ -1035,6 +1365,8 @@ function openCapsule(index) {
 }
 
 function closeCapsule() {
+    clearTimeout(sewingEndingTimer);
+    sewingActive = false;
     
     clearTimeout(blindBoxTimer);
     blindBoxTimer = null;
