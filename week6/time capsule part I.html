@@ -114,7 +114,7 @@
                  onclick="openCapsule(4)">
 
                 <div class="capsule-image">
-                    <img src="../week6/images/POP MART.png" alt="pop mart!">
+                    <img src="../week6/images/blindbox.png" alt="pop mart!">
                 </div>
 
                 <p class="capsule-number">0228</p>
@@ -267,9 +267,10 @@
                     class="blindbox-button"
                     onclick="openBlindBox()">
 
-                <img id="blindbox.png" src="" alt="Unopened blind box">
+                <img id="blindbox-image" src="images/blindbox.png" alt="Unopened Blind Box">
 
             </button>
+
 
             <p id="blindbox-instruction">
                 CLICK THE BOX TO OPEN
@@ -497,7 +498,7 @@ const capsuleObjects = [
     {
         number: "0228",
         title: "POP MART Toys",
-        image: "images/POP MART.png",
+        image: "images/blindbox.png",
         description: "This is a pop mart toy from the Hirono series.",
         reason: "I like to collective the toys and key chains from pop mart, it's a kind of gambling to be honest because it was blind box. The fullfillment of getting the one I want cannot be replaced than directly buying one. I also see them as a social technique, I like to give blind box as small gifts to my friends, it's a good present which is always surprising.",
 
@@ -552,7 +553,7 @@ const capsuleObjects = [
             {
                 sender: "ME",
                 text: "Don't forget to pick up your mugs!",
-                image: "images/cup-illustration.png",
+                image: "images/mug.png",
                 side: "right"
             },
             {
@@ -572,7 +573,7 @@ const capsuleObjects = [
             },
             {
                 sender: "Mrs.Xu",
-                image: "images/baby-illustration.png",
+                image: "images/baby.png",
                 side: "left"
             }
         ]
@@ -660,16 +661,21 @@ function resetBlindBox() {
 
     const button = document.getElementById("blindbox-button");
     const image = document.getElementById("blindbox-image");
+    const instruction = document.getElementById("blindbox-instruction");
+    const resetButton = document.getElementById("blindbox-reset");
+
+    if (!button || !image || !instruction || !resetButton) {
+        console.error("Blind Box HTML elements are missing.");
+        return;
+    }
 
     button.disabled = false;
     button.classList.remove("opening", "revealed");
 
     image.src = currentBlindBox.closedImage;
 
-    document.getElementById("blindbox-instruction").textContent =
-        "CLICK THE BOX TO OPEN";
-
-    document.getElementById("blindbox-reset").style.display = "none";
+    instruction.textContent = "CLICK THE BOX TO OPEN";
+    resetButton.style.display = "none";
 }
 
 function openBlindBox() {
