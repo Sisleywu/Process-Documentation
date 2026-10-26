@@ -253,6 +253,20 @@
 
         </div>
 
+        <!-- APRON AUDIO ARCHIVE -->
+
+        <div class="capsule-sound-section"
+            id="capsule-sound-section"
+            style="display: none;">
+
+            <h3>Sound Archive</h3>
+
+            <div class="capsule-sound-list"
+                id="capsule-sound-list">
+            </div>
+
+        </div>
+
         <!-- INSTANT CAMERA PHOTO ALBUM -->
             <div class="capsule-album-section"
                 id="capsule-album-section"
@@ -376,18 +390,9 @@ const capsuleObjects = [
         reason: "I like to cook since I went to college. It's the first time that I had been far away from home, cooking the dishes I missed felt nostalgic. Also, I enjoy eating good foods, I think it's the best way to kep oneself in a good mood. ",
 
          audioClips: [
-        {
-            title: "Cooking 01",
-            src: "audio/c1.m4a"
-        },
-        {
-            title: "Cooking 02",
-            src: "audio/c2.m4a"
-        },
-        {
-            title: "Cooking 03",
-            src: "audio/c3.m4a"
-        }
+        { title: "Cooking 01", src: "audio/c1.m4a" },
+        { title: "Cooking 02", src: "audio/c2.m4a" },
+        { title: "Cooking 03", src: "audio/c3.m4a"}
         ]
     },
 
@@ -523,6 +528,65 @@ function openCapsule(index) {
 
     const object = capsuleObjects[index];
 
+    /* APRON SOUND ARCHIVE */
+    const soundSection =
+        document.getElementById("capsule-sound-section");
+
+    const soundList =
+        document.getElementById("capsule-sound-list");
+
+    // Stop audio from previously opened objects
+    document.querySelectorAll(".capsule-sound-list audio")
+        .forEach(function(audio) {
+            audio.pause();
+        });
+
+    soundList.innerHTML = "";
+
+    const audioClips = object.audioClips || [];
+
+    if (audioClips.length > 0) {
+
+        soundSection.style.display = "block";
+
+        audioClips.forEach(function(clip, index) {
+
+            const item = document.createElement("div");
+            item.className = "capsule-sound-item";
+
+            const number = document.createElement("p");
+            number.className = "capsule-sound-number";
+            number.textContent =
+                "RECORDING " + String(index + 1).padStart(2, "0");
+
+            const title = document.createElement("h4");
+            title.textContent = clip.title;
+
+            const player = document.createElement("audio");
+            player.controls = true;
+            player.preload = "metadata";
+            player.src = clip.src;
+
+            player.addEventListener("play", function() {
+                soundList.querySelectorAll("audio")
+                    .forEach(function(otherAudio) {
+                        if (otherAudio !== player) {
+                            otherAudio.pause();
+                        }
+                    });
+            });
+
+            item.appendChild(number);
+            item.appendChild(title);
+            item.appendChild(player);
+
+            soundList.appendChild(item);
+        });
+
+    } else {
+        soundSection.style.display = "none";
+    }
+
     document.getElementById("capsule-detail-number")
         .textContent = object.number;
 
@@ -647,10 +711,17 @@ function openCapsule(index) {
 
 function closeCapsule() {
 
+    document.querySelectorAll(".capsule-sound-list audio")
+    .forEach(function(audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+
     document.getElementById("capsule-modal")
         .style.display = "none";
 
     document.body.style.overflow = "";
+    
 
 }
 
