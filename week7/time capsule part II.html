@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 7 — Time Capsule Part II</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #111;
+      color: #eee;
+      font-family: 'Courier New', monospace;
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 225px;
+      height: 100vh;
+      padding: 38px 25px;
+      background: #111;
+      border-right: 1px solid #454545;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 19px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      margin: 12px 0;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      color: #f4a5b4;
+    }
+
+    main {
+      margin-left: 225px;
+      max-width: 1160px;
+      padding: 55px 65px 100px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 65px 0 20px;
+      border-bottom: 1px solid #555;
+      padding-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 19px;
+      margin: 38px 0 12px;
+      color: #f1b5c1;
+    }
+
+    p {
+      font-size: 15px;
+      max-width: 850px;
+      margin: 12px 0 20px;
+    }
+
+    .intro {
+      font-size: 17px;
+      color: #ccc;
+    }
+
+    .eyebrow {
+      color: #eaa1af;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+    }
+
+    .section-label {
+      color: #aaa;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 26px 0 12px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 16px 0 30px;
+    }
+
+    .gallery.single {
+      grid-template-columns: 1fr;
+      max-width: 740px;
+    }
+
+    .gallery.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery figure {
+      margin: 0;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 245px;
+      object-fit: cover;
+      border: 1px solid #444;
+      cursor: zoom-in;
+      display: block;
+      background: #222;
+    }
+
+    .gallery.single img {
+      height: auto;
+      max-height: 520px;
+      object-fit: contain;
+    }
+
+    .divider {
+      height: 1px;
+      background: #444;
+      margin: 48px 0;
+    }
+
+    .step {
+      margin-bottom: 48px;
+    }
+
+    .step-number {
+      color: #e9a3b1;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.94);
+      padding: 60px 25px 25px;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .close {
+      position: absolute;
+      right: 24px;
+      top: 12px;
+      background: transparent;
+      border: 0;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 820px) {
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid #444;
+        padding: 20px;
+      }
+
+      .sidebar a {
+        display: inline-block;
+        margin: 5px 12px 5px 0;
+      }
+
+      main {
+        margin: 0;
+        padding: 30px 20px 70px;
+      }
+
+      .gallery.three {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .gallery,
+      .gallery.three {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery img {
+        height: auto;
+        max-height: 360px;
+        object-fit: contain;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <aside class="sidebar">
+    <h2>MY DOCUMENTATION</h2>
+
+    <a href="../index.html">Home</a>
+    <a href="#top" class="active">Week 7</a>
+    <a href="#concepts">Initial Concepts</a>
+    <a href="#selection">Concept Selection</a>
+    <a href="#making">Making Process</a>
+    <a href="#final">Final Outcome</a>
+  </aside>
+
+  <main id="top">
+
+    <div class="eyebrow">
+      Week 7 · Ideation & Prototyping
+    </div>
+
+    <h1>Time Capsule — Part II</h1>
+
+    <section id="concepts">
+    <h2>01 / Initial Concepts</h2>
+        <p>
+            As all my objects are around my habits, memories and relationships, I wanted to create a time capsule that can exhibit my personal relationships to it. 
+        </p>
+
+    <!-- IDEA 1 -->
+
+        <h3>Idea 1 — Pop-up Book</h3>
+
+            <p>
+                I want to create a pop-up book because I want my time capsule to be more than a container that simply stores objects. 
+                I want the experience of opening it to become part of the storytelling. 
+                When others open the book, it will feels like opening my stories, and those memories can gradually emerge between pages. 
+                This format reminds me of how memories can suddenly become vivid when we encounter something familiar. 
+                Each object in my collection represents a different moment or relationship in my life, and I want to use different paper structures, layers, and heights to show how these memories exist together.
+            </p>
+            
+            <div class="section-label">Concept Sketch</div>
+            <div class="gallery single">
+                <img src="images/sketch 1.JPG" onclick="openImage(this.src)">
+            </div>
+
+            <div class="section-label">Prototype</div>
+            <div class="gallery">
+            <img src="images/idea 1-1.JPG" onclick="openImage(this.src)">
+            <img src="images/idea 1-2.JPG" onclick="openImage(this.src)">
+            <img src="images/idea 1-3.JPG" onclick="openImage(this.src)">
+            <img src="images/idea 1-4.JPG" onclick="openImage(this.src)">
+            </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- IDEA 2 -->
+
+    <h3>Idea 2 — Memory Cabinet</h3>
+
+    <p>
+        My second idea is to create a mini cabinet because I am interested in how ordinary objects can become meaningful when they are collected and preserved. 
+        A cabinet reminds me of my rooms, that I always keep things meaningful in the cabinets. 
+        It also reminds me of a little museum or storage, where each object is given its own space and treated as something worth saving. 
+        Most of the objects in my time capsule are not particularly valuable in a material sense, but the personal stories and emotional connections make them important to me. 
+        Instead of revealing everything at once, the viewers can choose which compartment to open, creating a sense of curiosity and discovery. 
+    </p>
+
+    <div class="section-label">Concept Sketch</div>
+    <div class="gallery single">
+        <img src="images/sketch 2.JPG" onclick="openImage(this.src)">
+    </div>
+
+   <div class="section-label">Prototype</div>
+    <div class="gallery">
+        <img src="images/idea 2-1.JPG" onclick="openImage(this.src)">
+        <img src="images/idea 2-2.JPG" onclick="openImage(this.src)">
+        <img src="images/idea 2-3.JPG" onclick="openImage(this.src)">
+        <img src="images/idea 2-4.JPG" onclick="openImage(this.src)">
+    </div>
+
+    <div class="divider"></div>
+
+
+    <!-- IDEA 3 -->
+
+    <h3>Idea 3 — Umbrella Capsule</h3>
+
+    <p>
+        I also thought of using an umbrella as the structure of my time capsule. 
+        When the umbrella is closed, all the objects are gathered together and hidden within a compact space. 
+        As it opens, the objects will gradually spread apart and become visible. 
+        I find this transformation meaningful because memories are not always present in our minds, but the objects meaningful to me can suddenly bring them back. 
+        I think of umbrella as something that provides shelter and protection. 
+        In this project, it could become a space that protects my personal memories from being lost and forgotten. 
+        I want to hang the objects at different heights and connecting them with threads to represent the relationships between different moments in my life. 
+        The viewer would need to look underneath the umbrella, making the act of viewing more immersive. 
+    </p>
+
+    <div class="section-label">Concept Sketch</div>
+    <div class="gallery single">
+        <img src="images/sketch 3.JPG" onclick="openImage(this.src)">
+    </div>
+
+   <div class="section-label">Prototype</div>
+    <div class="gallery">
+        <img src="images/idea 3-1.JPG" onclick="openImage(this.src)">
+        <img src="images/idea 3-2.JPG" onclick="openImage(this.src)">
+    </div>
+
+    </section>
+
+
+<!-- PART 4: CONCEPT SELECTION -->
+
+<section id="selection">
+
+  <h2>02 I Chose the Memory Cabinet</h2>
+
+  <p>
+    After exploring the three concepts, I decided to further develop my second idea, the Memory Cabinet.
+    To me, a cabinet is much more than a place to store things. 
+    It is also a space where I can display my personality, interests, and the things I value most.
+
+    In my home, I often arrange meaningful objects, collectibles, photographs, and personal belongings inside my cabinets. 
+    The objects I choose to display are not necessarily the most expensive or practical ones, but they represent things that are valuable to me.
+  </p>
+
+  <div class="section-label"> Cabinets in My Everyday Life</div>
+
+  <div class="gallery">
+    <img src="images/cabin 1.JPG" onclick="openImage(this.src)" alt="My cabinet 1">
+    <img src="images/cabin 2.JPG" onclick="openImage(this.src)" alt="My cabinet 2">
+  </div>
+
+  <p>
+    When someone enters my home, they can learn a lot about who I am simply by looking at my cabinets.
+    The way I organize and display my belongings ecomes a form of self-expression. 
+    My cabinets are almost like small personal exhibitions, revealing my habits, preferences, memories, and relationships.
+    I wanted my time capsule to function in a similar way. 
+    Rather than presenting all six objects at once, I wanted to give each memory its own compartment and allow viewers to discover them individually.
+  </p>
+
+  <p>
+    It also gives freedom to the viewer, making the time capsule fun to explore, and also allowing the viewers to understand that these things are important to Sisley. 
+    I like how this resembles the process of getting to know another person.
+    We do not understand someone's identity all at once.
+    Instead, we gradually discover their stories, interests, and relationships through small details and personal experiences.
+  </p>
+
+</section>
+
+
+<!-- PART 5: MAKING PROCESS -->
+
+<section id="making">
+
+  <h2>03 / Making Process</h2>
+
+  <!-- STEP 1: OUTER STRUCTURE -->
+
+  <div class="step">
+
+    <div class="step-number">STEP 01</div>
+
+    <h3>Building the Outer Structure</h3>
+
+    <p>
+      I used a cardboard box to make the main structure of the cabinet. 
+      I cut several openings in different sizes and positions to create spaces for the drawers.
+      I also added pieces of cardboard inside the box to provide support for the drawers.
+    </p>
+
+    <div class="gallery">
+      <img src="images/cardboard 1.JPG" onclick="openImage(this.src)">
+      <img src="images/cardboard 2.JPG" onclick="openImage(this.src)">
+      <img src="images/cardboard 3.JPG" onclick="openImage(this.src)">
+      <img src="images/cardboard 4.JPG" onclick="openImage(this.src)">
+    </div>
+
+  </div>
+
+  <!-- STEP 2: DRAWERS -->
+
+  <div class="step">
+
+    <div class="step-number">STEP 02</div>
+
+    <h3>Drawers</h3>
+
+    <p>
+        I used cardboard, cardstock, and small packaging boxes to construct the individual drawers.
+    </p>
+
+    <div class="gallery">
+      <img src="images/drawer 1.JPG" onclick="openImage(this.src)">
+      <img src="images/drawer 2.JPG" onclick="openImage(this.src)">
+      <img src="images/drawer 3.JPG" onclick="openImage(this.src)">
+      <img src="images/drawer4.JPG" onclick="openImage(this.src)">
+      <img src="images/drawer 5.JPG" onclick="openImage(this.src)">
+    </div>
+
+  </div>
+
+
+  <!-- STEP 3: HANDLES -->
+
+  <div class="step">
+
+    <div class="step-number">STEP 03</div>
+
+    <h3>Handles</h3>
+
+    <p>
+      For the handles, I wrapped yarn around folded pieces of cardboard and bottle caps.
+      I wanted to experiment with different shapes and textures rather than using identical handles for every drawer.
+    </p>
+
+    <div class="gallery">
+      <img src="images/handle 1.JPG" onclick="openImage(this.src)">
+      <img src="images/handle 2.JPG" onclick="openImage(this.src)">
+    </div>
+
+  </div>
+
+
+  <!-- STEP 4: PAINTING -->
+
+  <div class="step">
+
+    <div class="step-number">STEP 04</div>
+
+    <h3>Exterior</h3>
+
+    <p>
+      I painted the outside to be black using acrylic 
+    </p>
+
+    <div class="gallery single">
+      <img src="images/paint.JPG" onclick="openImage(this.src)">
+    </div>
+
+  </div>
+
+
+  <!-- STEP 5: CONNECTING MEMORIES -->
+
+  <div class="step">
+
+    <div class="step-number">STEP 05</div>
+
+    <h3>Connecting the Memories</h3>
+
+    <p>
+      I took some photos of my objects using instant camera and also made some silhouettes of them.
+      I wanted to visualize the connections through threads, creating a small network of memories within the cabinet.
+    </p>
+
+    <div class="gallery single">
+      <img src="images/pictures.JPG" onclick="openImage(this.src)">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PART 6: FINAL OUTCOME & REFLECTION -->
+
+<section id="final">
+
+  <h2>04 / Final Outcome</h2>
+
+  <p>
+    This is my time capsule, a memory cabinet. 
+    Rather than creating a traditional cabinet with identical drawers, I wanted each compartment to have its own appearance and opening mechanism.
+    This makes the process of exploring the cabinet less predictable and encourages viewers to investigate what might be hidden inside.
+  </p>
+
+  <div class="section-label">
+    Final Prototype
+  </div>
+
+  <div class="gallery">
+
+    <img src="images/final 1.JPG" onclick="openImage(this.src)" alt="">
+    <img src="images/final 2.JPG" onclick="openImage(this.src)" alt="">
+    <img src="images/final 3.JPG" onclick="openImage(this.src)" alt="">
+    <img src="images/final 4.JPG" onclick="openImage(this.src)" alt="">
+
+  </div>
+
+
+  <h3>Reflection</h3>
+
+  <p>
+    Through this project, I started thinking more
+    about how the design of a container can influence
+    the way people discover and understand the
+    objects inside it.
+
+    When I first collected the objects for my time
+    capsule, I mainly focused on their personal
+    meanings and the memories associated with them.
+    However, designing the physical capsule made
+    me consider the experience of someone who
+    does not know me or the stories behind
+    these objects.
+  </p>
+
+  <p>
+    One of the reasons I chose the Memory Cabinet
+    was that I wanted the discovery process to
+    feel personal and exploratory.
+
+    I like the idea that different viewers might
+    discover the objects in different orders and
+    therefore form different first impressions
+    of me.
+
+    This reminds me of how we get to know another
+    person in real life. We do not understand
+    someone's identity immediately, but gradually
+    learn about them through their belongings,
+    habits, stories, and relationships.
+  </p>
+
+  <p>
+    I also found the process of making the cabinet
+    interesting because the materials influenced
+    many of my design decisions.
+
+    Cardboard was easy to cut and assemble, but
+    making drawers that could fit and move smoothly
+    required more careful measurements than I
+    originally expected.
+
+    Experimenting with different sizes of openings
+    and handmade yarn handles made me think about
+    affordances, that the shape and texture of an
+    object can suggest how someone should interact
+    with it.
+
+    I wanted the handles look interesting enough to invite people to pull
+    and explore, even without written instructions.
+  </p>
+
+  <p>
+    Overall, this project helped me understand
+    that a time capsule is not only about
+    preserving objects, but also about designing
+    how their stories will be encountered.
+
+    Through the Memory Cabinet, I wanted to
+    transform a collection of ordinary belongings
+    into a personal archive that invites curiosity
+    and exploration.
+
+    I hope that someone discovering this cabinet
+    in the future would not only learn about
+    the objects I valued, but also begin to
+    understand the relationships, experiences,
+    and memories that shaped who I was.
+  </p>
+
+</section>
+
+<!-- Part 7: Image Viewer and JavaScript goes below -->
+
+
+<!-- PART 7: IMAGE VIEWER -->
+
+<div class="lightbox" id="lightbox">
+
+  <button class="close"
+          id="close-lightbox"
+          aria-label="Close image">
+    &times;
+  </button>
+
+  <img id="lightbox-image"
+       alt="Enlarged image">
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+  // Get the lightbox elements
+
+  const lightbox = document.getElementById('lightbox');
+
+  const lightboxImage =
+    document.getElementById('lightbox-image');
+
+
+  // Open an image when clicked
+
+  function openImage(src) {
+
+    lightboxImage.src = src;
+
+    lightbox.classList.add('open');
+
+  }
+
+
+  // Close the enlarged image
+
+  function closeLightbox() {
+
+    lightbox.classList.remove('open');
+
+    lightboxImage.removeAttribute('src');
+
+  }
+
+
+  // Close button
+
+  document.getElementById('close-lightbox')
+    .addEventListener('click', closeLightbox);
+
+
+  // Click outside the image to close
+
+  lightbox.addEventListener('click', function(event) {
+
+    if (event.target === lightbox) {
+
+      closeLightbox();
+
+    }
+
+  });
+
+
+  // Press Escape to close
+
+  document.addEventListener('keydown', function(event) {
+
+    if (event.key === 'Escape') {
+
+      closeLightbox();
+
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
+
