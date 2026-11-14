@@ -1,0 +1,935 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Week 8 — The Instruction Manual</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: #f5f5f5;
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .documentation-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 50px 120px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 70px;
+      color: #999;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back:hover {
+      color: #fff;
+    }
+
+    .project-label,
+    .section-number,
+    .image-caption,
+    .metadata,
+    .footer {
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.7px;
+    }
+
+    .project-label,
+    .section-number {
+      color: #e6a3b5;
+    }
+
+    /* HEADER */
+
+    .doc-header {
+      margin-bottom: 105px;
+    }
+
+    .doc-header h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      font-weight: 600;
+      margin: 22px 0;
+    }
+
+    .subtitle {
+      font-size: 21px;
+      color: #aaa;
+      max-width: 780px;
+      line-height: 1.6;
+    }
+
+    .intro {
+      max-width: 850px;
+      color: #ccc;
+      font-size: 17px;
+      margin-top: 35px;
+    }
+
+    .metadata {
+      margin-top: 45px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #888;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 45px;
+    }
+
+    /* SECTIONS */
+
+    .doc-section {
+      border-top: 1px solid #333;
+      padding-top: 38px;
+      margin-bottom: 110px;
+    }
+
+    .doc-section h2 {
+      font-size: 38px;
+      font-weight: 500;
+      letter-spacing: -1px;
+      margin: 12px 0 30px;
+      line-height: 1.3;
+    }
+
+    .doc-section h3 {
+      font-size: 23px;
+      font-weight: 500;
+      margin: 0 0 15px;
+    }
+
+    .section-description {
+      max-width: 830px;
+      color: #bbb;
+      font-size: 16px;
+      margin-bottom: 45px;
+    }
+
+    /* CONCEPT DEVELOPMENT */
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .concept-card {
+      border: 1px solid #333;
+      padding: 30px;
+      background: #111;
+    }
+
+    .concept-card .card-number {
+      color: #e6a3b5;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      margin-bottom: 22px;
+    }
+
+    .concept-card p {
+      color: #bcbcbc;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    .concept-note {
+      margin-top: 30px;
+      padding: 24px 28px;
+      border-left: 2px solid #e6a3b5;
+      background: #141414;
+      color: #ddd;
+      max-width: 900px;
+      font-size: 16px;
+    }
+
+    /* IMAGES */
+
+    figure {
+      margin: 0;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px 24px;
+    }
+
+    .image-card img,
+    .full-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #303030;
+      background: #191919;
+      cursor: zoom-in;
+      transition: opacity 0.2s ease;
+    }
+
+    .image-card img:hover,
+    .full-image img:hover {
+      opacity: 0.8;
+    }
+
+    .image-caption {
+      color: #888;
+      margin-top: 12px;
+    }
+
+    .storyboard-sequence {
+      margin-top: 45px;
+    }
+
+    .sequence-title {
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      color: #e6a3b5;
+      margin-bottom: 20px;
+    }
+
+    .sequence-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .sequence-step {
+      border-top: 1px solid #555;
+      padding-top: 15px;
+    }
+
+    .sequence-step span {
+      display: block;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      color: #e6a3b5;
+      margin-bottom: 10px;
+    }
+
+    .sequence-step p {
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* FINAL OUTCOME */
+
+    .manual-pages {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 45px;
+    }
+
+    .full-image {
+      width: 100%;
+    }
+
+    .final-note {
+      margin-top: 45px;
+      max-width: 850px;
+      color: #bbb;
+      font-size: 16px;
+    }
+
+    /* REFLECTION */
+
+    .reflection {
+      max-width: 860px;
+      font-size: 17px;
+      color: #ccc;
+      line-height: 1.95;
+    }
+
+    .reflection p {
+      margin: 0 0 27px;
+    }
+
+    .reflection strong {
+      color: #fff;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      border-top: 1px solid #333;
+      padding-top: 25px;
+      color: #777;
+    }
+
+    /* LIGHTBOX */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.97);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      z-index: 1000;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 96%;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 18px;
+      right: 28px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 850px) {
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sequence-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .documentation-page {
+        padding: 26px 22px 75px;
+      }
+
+      .back {
+        margin-bottom: 45px;
+      }
+
+      .doc-header {
+        margin-bottom: 70px;
+      }
+
+      .doc-header h1 {
+        letter-spacing: -1px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .doc-section {
+        margin-bottom: 75px;
+      }
+
+      .doc-section h2 {
+        font-size: 30px;
+      }
+
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .concept-card {
+        padding: 23px;
+      }
+
+      .reflection {
+        font-size: 16px;
+      }
+
+      .lightbox {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="documentation-page">
+
+  <!-- BACK -->
+
+  <a class="back" href="../index.html">
+    ← Back
+  </a>
+
+
+  <!-- HEADER -->
+
+  <header class="doc-header">
+
+    <p class="project-label">
+      WEEK 08 — IDEATION & PROTOTYPING
+    </p>
+
+    <h1>
+      Time Capsule Part III:<br>
+      The Instruction Manual
+    </h1>
+
+    <p class="subtitle">
+      A speculative visual narrative about the discovery
+      and misinterpretation of human artifacts in 2151.
+    </p>
+
+    <p class="intro">
+      For the final part of the Time Capsule project,
+      I imagined what would I interpret these objects if I know nothing about them.
+      I tried to think of how people living 125 years in the future might discover and interpret the objects preserved inside my cabinet.
+      Without access to their original personal meanings,
+      future researchers mistakenly classify these ordinary
+      belongings as technological devices used by
+      early 21st-century humans.
+    </p>
+
+    <div class="metadata">
+      <span>YEAR / 2151</span>
+      <span>FORMAT / SPECULATIVE INSTRUCTION MANUAL</span>
+      <span>MEDIUM / FIGMA & DIGITAL DESIGN</span>
+      <span>PLACE / Ancient NEW YORK, 10036</span>
+    </div>
+
+  </header>
+
+
+  <!-- 01 CONCEPT DEVELOPMENT -->
+
+  <section class="doc-section" id="concept">
+
+    <p class="section-number">
+      01 / CONCEPT DEVELOPMENT
+    </p>
+
+    <h2>Concept Development</h2>
+
+    <p class="section-description">
+      Before creating the final visual narrative,
+      I tried to think of them without prior knowledge, and adding more futuristic view.
+      I think they might be more technological from 125 years later. 
+    </p>
+
+    <div class="concept-grid">
+
+      <article class="concept-card">
+
+        <div class="card-number">
+          01 — ESTABLISH THE FUTURE
+        </div>
+
+        <h3>The Year 2151</h3>
+
+        <p>
+          The story takes place in 2151, 125 years after
+          the creation of my time capsule.
+          A group of future researchers discovers
+          an unusual cabinet containing several objects
+          from the early 21st century.
+          Although the physical objects have survived,
+          most information about their original purposes
+          and personal significance has disappeared.
+        </p>
+
+      </article>
+
+
+      <article class="concept-card">
+
+        <div class="card-number">
+          02 — CHOOSE A PERSPECTIVE
+        </div>
+
+        <h3>Future Researchers</h3>
+
+        <p>
+          The narrative is told from the perspective
+          of researchers who specialize in reconstructing
+          ancient human technologies.
+          They believe the recovered objects belong to
+          a complex technological system designed to
+          regulate different aspects of human life.
+        </p>
+
+      </article>
+
+
+      <article class="concept-card">
+
+        <div class="card-number">
+          03 — INTERPRET
+        </div>
+
+        <h3>Misunderstood Artifacts</h3>
+
+        <p>
+          Rather than recognizing the objects as
+          personal belongings, the researchers assign
+          each artifact a technological function
+          based on its appearance, materials, and
+          structural details.
+          Their interpretations transform ordinary
+          objects into fictional devices.
+        </p>
+
+      </article>
+
+
+      <article class="concept-card">
+
+        <div class="card-number">
+          04 — CHOOSE A FORMAT
+        </div>
+
+        <h3>The Instruction Manual</h3>
+
+        <p>
+          I chose to present the researchers'
+          interpretations through an instruction manual.
+          By combining technical diagrams, component
+          descriptions, and operating procedures,
+          I wanted the fictional explanations to
+          appear scientific and convincing,
+          even though they are fundamentally incorrect.
+          I think this will be funny because instructional manuals are somewhat serious, but it gives the completely wrong usage of objects.
+        </p>
+
+      </article>
+
+    </div>
+
+    <div class="concept-note">
+      <strong>Central Question:</strong>
+      I wonder what happens to the meaning of an object when
+      its physical form survives, but the personal
+      memories and cultural context surrounding it disappear?
+    </div>
+
+  </section>
+
+
+  <!-- 02 STORYBOARD -->
+
+  <section class="doc-section" id="storyboard">
+
+    <p class="section-number">
+      02 / NARRATIVE DEVELOPMENT
+    </p>
+
+    <h2>Storyboard</h2>
+
+    <p class="section-description">
+      I developed a sequence that begins with the
+      discovery of the cabinet and follows the
+      researchers as they examine the recovered
+      objects. Their observations gradually develop
+      into a collection of speculative interpretations,
+      which are eventually compiled into an official
+      instruction manual.
+    </p>
+
+    <div class="image-grid">
+
+      <figure class="image-card">
+        <img
+          src="../week8/images/Story Board.jpg"
+          alt="Storyboard"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          STORYBOARD
+        </figcaption>
+      </figure>
+
+    </div>
+
+
+    <div class="storyboard-sequence">
+
+      <p class="sequence-title">
+        NARRATIVE SEQUENCE
+      </p>
+
+      <div class="sequence-list">
+
+        <div class="sequence-step">
+          <span>01 / DISCOVERY</span>
+          <p>
+            A mysterious cabinet from the 21st
+            century is recovered.
+          </p>
+        </div>
+
+        <div class="sequence-step">
+          <span>02 / EXAMINATION</span>
+          <p>
+            Researchers open the compartments
+            and examine the objects.
+          </p>
+        </div>
+
+        <div class="sequence-step">
+          <span>03 / ANALYSIS</span>
+          <p>
+            Each object's physical features
+            are documented.
+          </p>
+        </div>
+
+        <div class="sequence-step">
+          <span>04 / MISINTERPRETATION</span>
+          <p>
+            Researchers assign fictional
+            technological functions.
+          </p>
+        </div>
+
+        <div class="sequence-step">
+          <span>05 / RECONSTRUCTION</span>
+          <p>
+            The findings are compiled into
+            an official operating manual.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- 03 FINAL OUTCOME -->
+
+  <section class="doc-section" id="final">
+
+    <p class="section-number">
+      03 / FINAL VISUAL NARRATIVE
+    </p>
+
+    <h2>Human Operating Manual</h2>
+
+    <p class="section-description">
+      The final outcome is a fictional instruction
+      manual published in 2151.
+      Each recovered object is presented as an
+      ancient human technological device,
+      complete with a reconstructed function,
+      component analysis, operating instructions,
+      and safety warnings.
+      The manual uses a futuristic visual language and simple
+      to create an illusion of scientific authority.
+    </p>
+
+    <div class="manual-pages">
+
+      <figure class="full-image">
+        <img
+          src="images/1.jpg"
+          alt="Human Operating Manual cover"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / COVER
+        </figcaption>
+      </figure>
+
+      <figure class="full-image">
+        <img
+          src="images/2.jpg"
+          alt="Manual page one"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / PAGE 01
+        </figcaption>
+      </figure>
+
+      <figure class="full-image">
+        <img
+          src="images/3.jpg"
+          alt="Manual page two"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / PAGE 02
+        </figcaption>
+      </figure>
+
+      <figure class="full-image">
+        <img
+          src="images/4.jpg"
+          alt="Manual page three"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / PAGE 03
+        </figcaption>
+      </figure>
+
+      <figure class="full-image">
+        <img
+          src="images/5.jpg"
+          alt="Manual page four"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / PAGE 04
+        </figcaption>
+      </figure>
+
+      <figure class="full-image">
+        <img
+          src="images/6.jpg"
+          alt="Manual page five"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / PAGE 05
+        </figcaption>
+      </figure>
+
+      <figure class="full-image">
+        <img
+          src="images/7.jpg"
+          alt="Manual page six"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / PAGE 06
+        </figcaption>
+      </figure>
+
+        <figure class="full-image">
+        <img
+          src="images/8.jpg"
+          alt="Manual page six"
+          class="zoomable"
+          loading="lazy"
+        >
+        <figcaption class="image-caption">
+          FINAL / PAGE 07
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <p class="final-note">
+      Through this manual, familiar personal belongings
+      become mysterious technological artifacts.
+      The visual format suggests precision and objectivity,
+      while the reconstructed functions reveal how easily
+      incomplete information can produce convincing
+      but inaccurate narratives.
+    </p>
+
+  </section>
+
+
+  <!-- 04 REFLECTION -->
+
+  <section class="doc-section" id="reflection">
+
+    <p class="section-number">
+      04 / CRITICAL REFLECTION
+    </p>
+
+    <h2>Reflection</h2>
+
+    <div class="reflection">
+
+      <p>
+        For the final part of my Time Capsule project, I imagined my cabinet being discovered by researchers in the year 2151.
+        Since the personal stories and cultural context behind the objects have been lost,
+        the researchers attempt to reconstruct their functions based entirely on their physical appearances. 
+        I chose to present their interpretations through a fictional instruction manual, where ordinary personal belongings are
+        classified as technological devices with specific
+        functions and operating procedures.
+      </p>
+
+      <p>
+        I chose the format of an instruction manual
+        because I thinked of when I was being introduced to something brand new.
+        I think instruction manual is a way of how we learn about new things, 
+        we learn about how to constuct, what function it takes and what are the boundaries.
+        I think the contrast between scientific authority and misunderstanding is interesting.
+        Instruction manuals are usually designed to
+        communicate information clearly and precisely.
+        By presenting incorrect interpretations through
+        technical diagrams, component descriptions,
+        and operating instructions, I wanted to explore
+        how convincing an explanation can appear even
+        when it is based on incomplete evidence.
+      </p>
+
+      <p>
+        Comparing Part I and Part III, I noticed that
+        the physical characteristics of the objects
+        were preserved, while their personal meanings
+        were often distorted or transformed.
+        For example, my Little Sheep originally
+        represented companionship and the memories
+        of traveling with it.
+        In the future researchers' interpretation,
+        it becomes a device that protects humans
+        from supernatural creatures during sleep.
+        Although its function is completely misunderstood,
+        the idea of protection still reflects the
+        sense of comfort and security I associate with it.
+      </p>
+
+      <p>
+        Similarly, the handmade cup originally
+        represented a personal relationship and a memory
+        of someone important to me.
+        In Part III, it becomes a relationship transmitter
+        that allows humans to exchange emotional energy.
+        Although the researchers misunderstand how the
+        object works, they unintentionally preserve its
+        connection to human relationships.
+
+        I think this is highly realated to creative processes, that we all make different interpretations and assumptions.
+        There is no universal right and wrong, but the form of communication and context is important.
+        Like the format of instruction manual would automatically make us feel authoritative. 
+        Therefore, I think the medium and way of expression is important, that it generates meaning and makes the artwork different.
+        We should reflect about how we create, think about platforms of presentation and combine them together to make a comprehensive expression. 
+      </p>
+
+      <p>
+        I also found it interesting that some
+        interpretations reveal more about the imagined
+        future society than about the objects themselves.
+        For example, the clothing tags are interpreted
+        as a human classification system, where barcodes,
+        prices, and sizes determine a person's identity
+        and social value.
+        This interpretation exaggerates the relationship
+        between consumerism and identity in contemporary
+        society. What appears to be a misunderstanding
+        also becomes a form of social commentary.
+      </p>
+
+      <p>
+        Through this project, I realized that preserving
+        an object does not necessarily mean preserving
+        its original meaning.
+        Physical materials, shapes, and patterns may
+        survive for centuries, but the personal experiences
+        and relationships connected to them can disappear.
+        At the same time, meaning is not simply lost;
+        it can also be reconstructed and transformed
+        through the perspectives of those who encounter
+        the objects.
+        Every aspect of an artwork would mean something. 
+        When we are in a creative process, we need to think about every step and experiment.
+        Because all of which matters, it forms information and knowledge during this ideating process. 
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+    WEEK 08 / IDEATION & PROTOTYPING / 2026
+  </footer>
+
+</main>
+
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+  <button
+    class="close-lightbox"
+    id="closeLightbox"
+    aria-label="Close image"
+  >
+    ×
+  </button>
+
+  <img
+    id="lightboxImage"
+    alt="Expanded project image"
+  >
+
+</div>
+
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const closeButton = document.getElementById("closeLightbox");
+
+  document.querySelectorAll(".zoomable").forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+      lightbox.classList.add("active");
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightboxImage.removeAttribute("src");
+  }
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+  });
+</script>
+
+</body>
+</html>
