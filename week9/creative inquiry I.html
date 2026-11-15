@@ -66,6 +66,34 @@
             margin-bottom: 20px;
         }
 
+
+        /* WEEK 9 - RESEARCH IMAGES */
+
+        .discussion-image,
+        .research-image {
+            width: 100%;
+            max-width: 650px;
+            margin: 30px auto;
+        }
+
+        .discussion-image img,
+        .research-image img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .discussion-image .image-caption,
+        .research-image .image-caption {
+            font-size: 13px;
+            color: #888;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+
         /* RESEARCH DIRECTIONS */
 
         .research-directions {
@@ -210,29 +238,6 @@
             object-fit: contain;
         }
 
-        /* MOBILE */
-
-        @media (max-width: 750px) {
-            .week9-page .doc-header h1 {
-                font-size: 36px;
-            }
-
-            .research-directions,
-            .artwork-layout,
-            .artwork-layout.reverse {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .artwork-layout.reverse .artwork-text,
-            .artwork-layout.reverse .artwork-visual {
-                order: initial;
-            }
-
-            .week9-page .doc-section {
-                margin-top: 85px;
-            }
-        }
     </style>
 </head>
 
@@ -306,7 +311,7 @@
         </div>
 
         <!-- RIGHT: IMAGE -->
-        <div class="discussion-image">
+        <div class="research-image">
 
             <img
                 src="images/1.png"
