@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Week 09 - Creative Inquiry Part I</title>
+
+    <!-- SAME STYLESHEET AS PREVIOUS WEEKS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* WEEK 09 ONLY */
+
+        .week9-page {
+            background: #fff;
+            color: #111;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .week9-page .doc-header {
+            margin-bottom: 100px;
+        }
+
+        .week9-page .doc-header h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .week9-subtitle {
+            font-size: 21px;
+            font-weight: 400;
+            color: #555;
+            margin-top: 12px;
+        }
+
+        .week9-page .doc-section {
+            margin-top: 120px;
+        }
+
+        .week9-page .doc-section > h2 {
+            font-size: 32px;
+            margin-bottom: 45px;
+        }
+
+        .week9-page p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .week9-intro,
+        .week9-text {
+            max-width: 800px;
+        }
+
+        .week9-text p {
+            margin-bottom: 25px;
+        }
+
+        .week9-page h3 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* RESEARCH DIRECTIONS */
+
+        .research-directions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px 65px;
+            margin-top: 50px;
+        }
+
+        .research-direction {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .research-direction h3 {
+            margin: 0 0 15px;
+            font-size: 20px;
+        }
+
+        .research-direction p {
+            margin: 0;
+        }
+
+        /* EMOTIONAL KEYWORDS */
+
+        .sound-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            max-width: 850px;
+            margin: 35px 0;
+        }
+
+        .sound-keywords span {
+            padding: 10px 16px;
+            border: 1px solid #aaa;
+            font-size: 14px;
+        }
+
+        .research-question {
+            max-width: 800px;
+            margin: 45px 0;
+            padding: 25px 30px;
+            border-left: 3px solid #111;
+            background: #f5f5f5;
+        }
+
+        /* ARTWORK REFERENCES */
+
+        .artwork-reference {
+            margin-bottom: 110px;
+        }
+
+        .artwork-reference h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .artwork-meta {
+            font-size: 14px !important;
+            color: #888;
+            margin-bottom: 35px;
+        }
+
+        .artwork-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 55px;
+            align-items: start;
+        }
+
+        .artwork-layout.reverse {
+            grid-template-columns: 1.1fr 1fr;
+        }
+
+        .artwork-layout.reverse .artwork-text {
+            order: 2;
+        }
+
+        .artwork-layout.reverse .artwork-visual {
+            order: 1;
+        }
+
+        .artwork-text p {
+            margin-top: 0;
+            margin-bottom: 22px;
+        }
+
+        .artwork-visual img {
+            display: block;
+            width: 100%;
+            height: auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            font-size: 13px !important;
+            color: #888;
+            margin-top: 12px;
+        }
+
+        .artwork-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #111;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-size: 15px;
+        }
+
+        /* REFLECTION */
+
+        .week9-reflection {
+            max-width: 800px;
+        }
+
+        .week9-reflection p {
+            margin-bottom: 25px;
+        }
+
+        /* IMAGE VIEWER */
+
+        .image-viewer {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.94);
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            cursor: zoom-out;
+        }
+
+        .image-viewer.active {
+            display: flex;
+        }
+
+        .image-viewer img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+            .week9-page .doc-header h1 {
+                font-size: 36px;
+            }
+
+            .research-directions,
+            .artwork-layout,
+            .artwork-layout.reverse {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .artwork-layout.reverse .artwork-text,
+            .artwork-layout.reverse .artwork-visual {
+                order: initial;
+            }
+
+            .week9-page .doc-section {
+                margin-top: 85px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<main class="documentation-page week9-page">
+
+    <!-- BACK TO HOME -->
+
+    <a class="back" href="../index.html">← Back</a>
+
+
+    <!-- PROJECT HEADER -->
+    <header class="doc-header">
+        <p class="project-label">
+            Week 09 — Ideation & Prototyping
+        </p>
+
+        <h1>Creative Inquiry — Part I</h1>
+        <p class="week9-subtitle">
+            Draft Research Plan: Disruptive Sounds in New York
+        </p>
+
+    </header>
+
+
+    <!-- 01 INITIAL DISCUSSION -->
+
+    <section class="doc-section" id="discussion">
+
+        <p class="section-number">01</p>
+
+        <h2>Initial Discussion & Topic Selection</h2>
+
+        <div class="discussion-layout">
+
+        <!-- LEFT: TEXT -->
+        <div class="week9-text">
+
+             <p>
+                We started our group discussion by sharing
+                the types of sounds that each of us was
+                interested in exploring. Through this
+                conversation, we realized that we were
+                interested in how sound influences people's
+                experiences of their surroundings,
+                especially in a city as dense and active
+                as New York.
+            </p>
+
+            <p>
+                Eventually, we decided to focus on
+                <strong>disruptive sounds in New York City.</strong>
+                We were interested in sounds that interrupt
+                everyday activities, attract unwanted
+                attention, or change the way people perceive
+                and navigate public spaces.
+            </p>
+
+            <p>
+                We also began questioning what makes a sound
+                disruptive. A sound that one person finds
+                disturbing might be completely ordinary or
+                even meaningful to someone else.
+                This made us interested in examining
+                disruptive noise not only as an acoustic
+                phenomenon, but also as a subjective
+                and social experience.
+            </p>
+
+        </div>
+
+        <!-- RIGHT: IMAGE -->
+        <div class="discussion-image">
+
+            <img
+                src="images/1.png"
+                alt="Initial group discussion and brainstorming"
+                class="zoomable"
+            >
+
+            <p class="image-caption">
+                Initial brainstorming and topic selection
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+           
+
+        </div>
+
+    </section>
+
+
+    <!-- 02 RESEARCH DIRECTIONS -->
+
+    <section class="doc-section" id="directions">
+
+        <p class="section-number">02</p>
+
+        <h2>Research Directions</h2>
+
+        <div class="week9-text">
+
+            <p>
+                After selecting our topic, we brainstormed
+                possible directions for research. We considered
+                locations for field observation, the people
+                responsible for producing disruptive sounds,
+                those who experience them, researchers
+                studying urban sound environments, and
+                possible artistic formats.
+            </p>
+
+        </div>
+
+        <!-- RESEARCH DIRECTIONS IMAGE -->
+        <div class="research-image">
+            <img
+                src="images/2.png"
+                alt="Initial research directions and brainstorming"
+            >
+
+            <p class="image-caption">
+                Initial research directions and brainstorming
+            </p>
+        </div>
+
+        </div>
+
+        <div class="week9-text" style="margin-top:45px;">
+
+            <p>
+                These were potential research directions
+                rather than finalized field sites or
+                participant groups. We wanted to keep
+                our approach open while collecting
+                references and identifying a more
+                specific focus.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- 03 MY INDIVIDUAL RESEARCH -->
+
+    <section class="doc-section" id="individual">
+
+        <p class="section-number">03</p>
+
+        <h2>Artist References</h2>
+
+        <div class="week9-text">
+
+            <p>
+                Since I do not have much background in music
+                or sound production, I wanted to contribute
+                more through visual art and design.
+                While some of my group members focused on
+                sound-based installations and sonic experiences,
+                I decided to investigate artworks and research
+                projects that connect sound with visual
+                representation.
+            </p>
+
+            <p>
+                I was especially interested in how an invisible
+                experience like sound could be communicated
+                through visual elements such as shape,
+                movement, color, repetition, and spatial
+                arrangement.
+            </p>
+
+            <h3>How Does Disruptive Sound Feel?</h3>
+
+            <p>
+                Before looking into visual references,
+                I considered the emotional and physical
+                sensations that disruptive sounds might
+                create. I noticed that the experience
+                of noise is not determined only by volume.
+                Repetition, unpredictability, proximity,
+                and a lack of control can also influence
+                how people respond to a sound.
+            </p>
+
+        </div>
+
+        <div class="sound-keywords">
+            <span>Overwhelming</span>
+            <span>Intrusive</span>
+            <span>Anxiety</span>
+            <span>Tension</span>
+            <span>Disorientation</span>
+            <span>Irritation</span>
+            <span>Interruption</span>
+            <span>Loss of Control</span>
+            <span>Sensory Overload</span>
+        </div>
+
+        <div class="week9-text">
+
+            <p>
+                These words became a starting point for
+                thinking about visual language. For example,
+                overlapping shapes might communicate
+                overwhelming noise, sudden changes in scale
+                could represent interruption, and irregular
+                movement might express unpredictability.
+            </p>
+
+        </div>
+
+    </section>
+
+        <div class="week9-text">
+
+            <p>
+                I collected several references to understand
+                how artists and researchers work with sound,
+                perception, and representation. Some of these
+                projects use sound itself as the primary medium,
+                while others explore ways of visualizing,
+                analyzing, or interpreting sonic information.
+            </p>
+
+        </div>
+
+
+        <!-- REFERENCE 01 -->
+
+        <article class="artwork-reference">
+
+            <h3>
+                Bruce Nauman — Get Out of My Mind,
+                Get Out of This Room
+            </h3>
+
+            <p class="artwork-meta">
+                1968 / Sound Installation
+            </p>
+
+            <div class="artwork-layout">
+
+                <div class="artwork-text">
+
+                    <p>
+                        In this installation, Bruce Nauman
+                        uses a repeated recorded voice within
+                        an enclosed room. The words are
+                        delivered in different tones,
+                        creating an experience that can feel
+                        confrontational, uncomfortable,
+                        and psychologically intrusive.
+                    </p>
+
+                    <p>
+                        What interested me most was how
+                        the work creates a strong emotional
+                        response without relying on
+                        complicated visual elements.
+                        The space itself becomes part
+                        of the experience.
+                    </p>
+
+                    <p>
+                        This made me think about how
+                        disruptive sounds can create
+                        an invisible sense of pressure.
+                        We could explore how repetition,
+                        spatial restriction, and proximity
+                        might be represented visually.
+                    </p>
+
+                </div>
+
+                <div class="artwork-visual">
+
+                    <img
+                        src="images/Bruce.png"
+                        alt="Bruce Nauman installation"
+                        class="zoomable"
+                        loading="lazy"
+                    >
+
+                    <p class="image-caption">
+                        Bruce Nauman / Sound Installation
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- REFERENCE 02 -->
+
+        <article class="artwork-reference">
+
+            <h3>
+                Seeing Sound
+            </h3>
+
+            <p class="artwork-meta">
+                Mark Cartwright et al. / 2017 /
+                Research on Audio Visualization
+            </p>
+
+            <div class="artwork-layout reverse">
+
+                <div class="artwork-text">
+
+                    <p>
+                        Seeing Sound investigates how
+                        different sound visualizations
+                        affect people's ability to identify
+                        and annotate sound events.
+                        It compares visual representations
+                        such as waveforms and spectrograms,
+                        as well as listening without
+                        visualization aids.
+                    </p>
+
+                    <p>
+                        I found this research especially
+                        useful because it demonstrates
+                        how visual representations can
+                        support the interpretation
+                        of complex sound environments.
+                    </p>
+
+                    <p>
+                        It also made me consider the
+                        difference between accurately
+                        representing acoustic information
+                        and communicating the emotional
+                        experience of sound.
+                        I would like to explore how
+                        these approaches might be combined.
+                    </p>
+
+                </div>
+
+                <div class="artwork-visual">
+
+                    <img
+                        src="images/seeing sound.png"
+                        alt="Seeing Sound research"
+                        class="zoomable"
+                        loading="lazy"
+                    >
+
+                    <p class="image-caption">
+                        SONYC / Seeing Sound
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- REFERENCE 03 -->
+
+        <article class="artwork-reference">
+
+            <h3>
+                Laura Selby — Sonic Contamination
+            </h3>
+
+            <p class="artwork-meta">
+                Sonic Art / Participatory Research
+            </p>
+
+            <div class="artwork-layout">
+
+                <div class="artwork-text">
+
+                    <p>
+                        Sonic Contamination explores
+                        relationships between humans,
+                        nonhuman organisms, and their
+                        shared environments through
+                        listening, field recording,
+                        touch, performance, and
+                        participatory experiences.
+                    </p>
+
+                    <p>
+                        This project interested me because
+                        it approaches listening as a way
+                        of becoming more aware of
+                        relationships that are usually
+                        overlooked.
+                    </p>
+
+                    <p>
+                        Although our research focuses on
+                        disruptive urban sounds, this work
+                        encouraged me to think about how
+                        an installation could change
+                        the audience's awareness of
+                        sounds that they normally ignore.
+                    </p>
+
+                </div>
+
+                <div class="artwork-visual">
+
+                    <img
+                        src="images/sound contamination.jpg"
+                        alt="Sonic Contamination"
+                        class="zoomable"
+                        loading="lazy"
+                    >
+
+                    <p class="image-caption">
+                        Laura Selby / Sonic Contamination
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- REFERENCE 04 -->
+
+        <article class="artwork-reference">
+
+            <h3>
+                Lawrence Abu Hamdan — Earshot
+            </h3>
+
+            <p class="artwork-meta">
+                2016 / Sound Investigation & Installation
+            </p>
+
+            <div class="artwork-layout reverse">
+
+                <div class="artwork-text">
+
+                    <p>
+                        Earshot investigates the relationship
+                        between sound, evidence, and political
+                        interpretation. The project uses
+                        acoustic analysis and visual presentation
+                        to examine how sounds can provide
+                        information about events that may
+                        not be fully visible.
+                    </p>
+
+                    <p>
+                        I was interested in how sound
+                        can be translated into forms
+                        that allow an audience to examine
+                        and question what they are hearing.
+                    </p>
+
+                    <p>
+                        For our research, this made me
+                        think about how we might visually
+                        document disruptive sounds in
+                        New York, while also considering
+                        the social context and different
+                        perspectives surrounding those sounds.
+                    </p>
+
+                </div>
+
+                <div class="artwork-visual">
+
+                    <img
+                        src="images/Earshot.jpg"
+                        alt="Lawrence Abu Hamdan Earshot"
+                        class="zoomable"
+                        loading="lazy"
+                    >
+
+                    <p class="image-caption">
+                        Lawrence Abu Hamdan / Earshot
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- 05 REFLECTION -->
+
+    <section class="doc-section" id="reflection">
+
+        <p class="section-number">05</p>
+
+        <h2>Reflection & Next Steps</h2>
+
+        <div class="week9-reflection">
+
+            <p>
+                Through this initial research process,
+                I began to understand disruptive sound
+                as something more complex than simply
+                loud or unpleasant noise. Its impact
+                depends on the environment, the source
+                of the sound, and the experiences
+                of the person listening.
+            </p>
+
+            <p>
+                I also realized that my contribution
+                to the group does not necessarily
+                need to come from a technical
+                understanding of music or audio.
+                My background in visual art and
+                design allows me to approach the
+                topic from another perspective,
+                focusing on how sound can be
+                represented, communicated, and
+                experienced visually.
+            </p>
+
+            <p>
+                Looking at these references helped
+                me identify several approaches
+                that could be useful for our final
+                project. Bruce Nauman demonstrates
+                how sound can create psychological
+                pressure through repetition and space.
+                Seeing Sound shows how visual
+                information can support the
+                interpretation of complex soundscapes.
+                Laura Selby's work emphasizes
+                listening as an experience of
+                connection, while Lawrence Abu Hamdan
+                explores how sound can be analyzed
+                and presented as evidence.
+            </p>
+
+            <p>
+                For the next stage, I would like
+                to investigate how disruptive sounds
+                might be translated into visual
+                elements such as distortion,
+                overlapping patterns, movement,
+                color, and spatial composition.
+                I think these experiments could
+                help our group develop a visual
+                language that communicates not
+                only what disruptive sounds are,
+                but also how they feel.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- IMAGE VIEWER -->
+
+<div class="image-viewer" id="imageViewer">
+    <img id="viewerImage" alt="Expanded artwork">
+</div>
+
+
+<script>
+    const viewer = document.getElementById("imageViewer");
+    const viewerImage = document.getElementById("viewerImage");
+
+    document.querySelectorAll(".zoomable").forEach(img => {
+        img.addEventListener("click", () => {
+            viewerImage.src = img.src;
+            viewerImage.alt = img.alt;
+            viewer.classList.add("active");
+        });
+    });
+
+    viewer.addEventListener("click", () => {
+        viewer.classList.remove("active");
+        viewerImage.removeAttribute("src");
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            viewer.classList.remove("active");
+            viewerImage.removeAttribute("src");
+        }
+    });
+</script>
+
+</body>
+</html>
