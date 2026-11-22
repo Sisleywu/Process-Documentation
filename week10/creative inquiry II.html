@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Week 10 — Visual Field Study</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* ==============================
+           WEEK 10 — VISUAL FIELD STUDY
+        ============================== */
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: #111111;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .week10-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 50px 100px;
+            box-sizing: border-box;
+        }
+
+        .week10-page .back {
+            display: inline-block;
+            margin-bottom: 65px;
+            color: #666;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .week10-page .back:hover {
+            color: #111;
+            text-decoration: underline;
+        }
+
+        /* HEADER */
+
+        .week10-page .doc-header {
+            margin-bottom: 80px;
+        }
+
+        .week10-page .project-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #777;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .week10-page .doc-header h1 {
+            font-size: 48px;
+            line-height: 1.15;
+            font-weight: 700;
+            margin: 0 0 25px;
+        }
+
+        .week10-page .intro {
+            max-width: 850px;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        /* SECTIONS */
+
+        .week10-page .doc-section {
+            margin-bottom: 90px;
+        }
+
+        .week10-page .section-number {
+            font-size: 13px;
+            color: #999;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .week10-page .doc-section h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin: 0 0 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .week10-page .section-description {
+            max-width: 850px;
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 35px;
+        }
+
+        /* AUDIO RECORDINGS */
+
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .audio-card {
+            padding: 24px;
+            background: #f7f7f7;
+            border: 1px solid #e8e8e8;
+        }
+
+        .audio-number {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 12px;
+        }
+
+        .audio-card h3 {
+            font-size: 17px;
+            margin: 0 0 12px;
+        }
+
+        .audio-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin: 0 0 20px;
+        }
+
+        .audio-card audio {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* PHOTO GALLERY */
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            max-width: 950px;
+        }
+
+        .photo-item {
+            margin: 0;
+            min-width: 0;
+        }
+
+        .photo-item img {
+            display: block;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: zoom-in;
+        }
+
+        .photo-item figcaption {
+            font-size: 13px;
+            color: #888;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        /* COLOR MOOD BOARD */
+
+        .moodboard {
+            max-width: 800px;
+            margin: 35px 0;
+        }
+
+        .moodboard img {
+            display: block;
+            width: 100%;
+            height: auto;
+            cursor: zoom-in;
+        }
+
+        /* TEXTURES & OBJECTS */
+
+        .texture-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+            max-width: 950px;
+        }
+
+        .texture-item {
+            margin: 0;
+            min-width: 0;
+        }
+
+        .texture-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 420px;
+            object-fit: contain;
+            cursor: zoom-in;
+        }
+
+        .texture-item figcaption {
+            font-size: 13px;
+            color: #888;
+            margin-top: 12px;
+        }
+
+        /* IMAGE LIGHTBOX */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<main class="documentation-page week10-page">
+
+    <a class="back" href="../index.html">
+        ← Back to Documentation
+    </a>
+
+    <!-- HEADER -->
+
+    <header class="doc-header">
+
+        <p class="project-label">
+            Week 10 — Ideation & Prototyping
+        </p>
+
+        <h1>
+            Creative Inquiry — Visual Field Study
+        </h1>
+
+        <p class="intro">
+            For the first round of our field research,
+            I visited several blocks around Times Square
+            in New York City to collect and document
+            disruptive sounds in the urban environment. 
+            I focused on observing how different sounds
+            exist within public spaces and how they
+            interact with the surrounding visual
+            environment.
+        </p>
+
+        <p class="intro">
+            During my visit, I collected audio recordings,
+            photographs, colors, textures, and visual
+            details from the streets. Rather than focusing
+            only on the sounds themselves, I wanted to
+            explore the relationship between what we hear
+            and what we see, and how visual elements
+            might communicate the experience of
+            disruptive noise.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         01 SOUND RECORDINGS
+    ========================= -->
+
+    <section class="doc-section" id="sounds">
+
+        <p class="section-number">01</p>
+
+        <h2>Sound Recordings</h2>
+
+        <p class="section-description">
+            I recorded eight audio samples while walking
+            through the streets surrounding Times Square.
+            These recordings document different moments
+            of the city's soundscape, allowing me to
+            revisit and compare the sounds I encountered
+            during my field observation.
+        </p>
+
+        <div class="audio-grid">
+
+            <!-- SOUND 01 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 01</div>
+                <h3>Sound 01</h3>
+                <p>ambulance</p>
+                <audio controls preload="none">
+                    <source src="audio/ambulance.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- SOUND 02 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 02</div>
+                <h3>Sound 02</h3>
+                <p>Car Horn</p>
+                <audio controls preload="none">
+                    <source src="audio/car horn.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- SOUND 03 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 03</div>
+                <h3>Sound 03</h3>
+                <p>Car Horn 2</p>
+                <audio controls preload="none">
+                    <source src="audio/car horn 2.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- SOUND 04 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 04</div>
+                <h3>Sound 04</h3>
+                <p>Construction</p>
+                <audio controls preload="none">
+                    <source src="audio/construction.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- SOUND 05 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 05</div>
+                <h3>Sound 05</h3>
+                <p>Crowd</p>
+                <audio controls preload="none">
+                    <source src="audio/crowd.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- SOUND 06 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 06</div>
+                <h3>Sound 06</h3>
+                <p>Road</p>
+                <audio controls preload="none">
+                    <source src="audio/road.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- SOUND 07 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 07</div>
+                <h3>Sound 07</h3>
+                <p>Street</p>
+                <audio controls preload="none">
+                    <source src="audio/street.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- SOUND 08 -->
+            <div class="audio-card">
+                <div class="audio-number">RECORDING 08</div>
+                <h3>Sound 08</h3>
+                <p>Truck Noise</p>
+                <audio controls preload="none">
+                    <source src="audio/truck noise.m4a" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         02 PHOTO DOCUMENTATION
+    ========================= -->
+
+    <section class="doc-section" id="photos">
+
+        <p class="section-number">02</p>
+
+        <h2>Photo Documentation</h2>
+
+        <p class="section-description">
+            Alongside the audio recordings, I photographed
+            the surrounding streets, objects, and urban
+            environments. These images provide visual
+            context for the sounds I collected and help
+            document the atmosphere of the locations
+            I visited.
+        </p>
+
+        <div class="photo-grid">
+
+            <figure class="photo-item">
+                <img src="images/1.JPG" alt="Field photo 01" class="zoomable">
+                <figcaption>01 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/2.JPG" alt="Field photo 02" class="zoomable">
+                <figcaption>02 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/3.JPG" alt="Field photo 03" class="zoomable">
+                <figcaption>03 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/4.JPG" alt="Field photo 04" class="zoomable">
+                <figcaption>04 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/5.JPG" alt="Field photo 05" class="zoomable">
+                <figcaption>05 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/6.JPG" alt="Field photo 06" class="zoomable">
+                <figcaption>06 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/7.JPG" alt="Field photo 07" class="zoomable">
+                <figcaption>07 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/8.JPG" alt="Field photo 08" class="zoomable">
+                <figcaption>08 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/9.JPG" alt="Field photo 09" class="zoomable">
+                <figcaption>09 — Field Observation</figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="images/10.JPG" alt="Field photo 10" class="zoomable">
+                <figcaption>10 — Field Observation</figcaption>
+            </figure>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         03 COLOR MOOD BOARD
+    ========================= -->
+
+    <section class="doc-section" id="colors">
+
+        <p class="section-number">03</p>
+
+        <h2>Color Mood Board</h2>
+
+        <p class="section-description">
+            I collected colors from the visual environment
+            around Times Square and organized them into
+            a mood board. This collection allows me to
+            consider how the visual atmosphere of the
+            city might relate to the intensity and
+            character of its sounds.
+        </p>
+
+        <div class="moodboard">
+
+            <img
+                src="images/color.png"
+                alt="Color mood board from Times Square"
+                class="zoomable"
+            >
+
+            <p class="image-caption">
+                Color palette collected during field observation.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         04 TEXTURES & OBJECTS
+    ========================= -->
+
+    <section class="doc-section" id="textures">
+
+        <p class="section-number">04</p>
+
+        <h2>Textures & Collected Objects</h2>
+
+        <p class="section-description">
+            I noticed that lights and traffics are a big part of the noises, which makes the visual picture of Time Square.
+            These details
+            offer another way to understand the
+            urban environment beyond sound.
+          
+        </p>
+
+        <div class="texture-grid">
+
+            <figure class="texture-item">
+
+                <img
+                    src="images/texture.png"
+                    alt="Texture and object study 01"
+                    class="zoomable"
+                >
+
+                <figcaption>
+                    01 — Texture & Object Study
+                </figcaption>
+
+            </figure>
+
+            <figure class="texture-item">
+
+                <img
+                    src="images/object.png"
+                    alt="Texture and object study 02"
+                    class="zoomable"
+                >
+
+                <figcaption>
+                    02 — Texture & Object Study
+                </figcaption>
+
+            </figure>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+        05 FIELD RESEARCH REFLECTION
+    ========================= -->
+
+    <section class="doc-section" id="reflection">
+
+        <p class="section-number">05</p>
+
+        <h2>Field Research Reflection</h2>
+
+        <div class="reflection-text">
+
+            <p>
+                During my field research around Times Square,
+                I realized that disruptive sounds are not only
+                defined by their volume, but also by how they
+                interact with the surrounding environment.
+                While collecting audio recordings and photographs,
+                I noticed how different sounds overlap with the
+                constant movement, like while I was walking or inside my apartment, these noises become a part of life. 
+                They are also what made the visual information and
+                activities of the city. I notice that the environment actually are very consistent with the sound. 
+                The bright colors, crowded
+                spaces, and different textures seem to reflect
+                the intensity and complexity of the urban
+                soundscape.
+            </p>
+
+            <p>
+                This experience encouraged me to think about
+                how sound could be translated into visual
+                elements such as color, shape, texture, and
+                repetition. Moving forward, I want to explore
+                how these visual qualities can communicate
+                not only what disruptive sounds are like,
+                but also how people experience them differently.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- IMAGE LIGHTBOX -->
+
+<div class="lightbox" id="lightbox" role="dialog"
+     aria-modal="true" aria-label="Image preview">
+
+    <button class="lightbox-close" id="lightbox-close"
+            aria-label="Close image preview">
+        &times;
+    </button>
+
+    <img id="lightbox-img" src="" alt="Enlarged field study image">
+
+</div>
+
+
+<script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeButton = document.getElementById("lightbox-close");
+
+    document.querySelectorAll(".zoomable").forEach(img => {
+        img.addEventListener("click", () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add("active");
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+    }
+
+    closeButton.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeLightbox();
+        }
+    });
+</script>
+
+</body>
+</html>
